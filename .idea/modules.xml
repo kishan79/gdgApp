@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/GDG.iml" filepath="$PROJECT_DIR$/GDG.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gdg/gdg.iml" filepath="$PROJECT_DIR$/gdg/gdg.iml" />
+    </modules>
+  </component>
+</project>
