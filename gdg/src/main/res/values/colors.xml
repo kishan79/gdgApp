@@ -2,6 +2,6 @@
 <resources>
     <color name="colorPrimary">#F5F5F5</color>
     <color name="colorPrimaryDark">#E0E0E0</color>
-    <color name="colorAccent">#e040fb</color>
+    <color name="colorAccent">#3d5afe</color>
     <color name="cardsColor">#FFFFFF</color>
 </resources>
