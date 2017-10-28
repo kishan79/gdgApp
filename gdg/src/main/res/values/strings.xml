@@ -20,6 +20,5 @@
     </string>
     <string name="logging_in">Logging You In…</string>
     <string name="google_play_service_error">Error : Cannot Connect to Google Play</string>
-    <string name="token_oauth2">702840488366-371h2kr5cbnq5bmsne0pphhhkifacc5r.apps.googleusercontent.com</string>
 
 </resources>
