@@ -15,7 +15,7 @@
         <item name="windowActionBar">false</item>
     </style>
 
-    <style name="AppTheme.ActionbarStyle" parent="Widget.AppCompat.ActionBar">
+    <style name="AppTheme.ActionbarStyle" parent="Widget.AppCompat.Light.ActionBar.Solid">
         <item name="titleTextStyle">@style/AppTheme.ActionbarTitle</item>
     </style>
     <style name="AppTheme.ActionbarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">

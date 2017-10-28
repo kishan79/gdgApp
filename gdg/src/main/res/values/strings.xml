@@ -7,4 +7,19 @@
     <string name="action_settings">Settings</string>
     <string name="app_name_long">Google Developer Group\nJalandhar</string>
     <string name="app_name_semi">Google Developers</string>
+
+    <!--Welcome Screen-->
+    <string name="welcome">Welcome</string>
+    <string name="using_google_account">Continue with Google</string>
+    <string name="welcome_message">Google Developer Groups (GDGs) are for developers who are
+    interested in Google\'s Developer Technology\; Everything from the Android, Chrome, Drive, and Google
+        Cloud Platforms to Product API, Maps API, and Youtube API.\n\n\n
+        A GDG can take many forms —from just a few people getting together to watch Google\'s Latest
+        Videos,to large gatherings with demos and tech talks, to events like code sprints and hackathons.
+        However at the core GDGs are focused on developers and technical contents, and the core audience should be developers.
+    </string>
+    <string name="logging_in">Logging You In…</string>
+    <string name="google_play_service_error">Error : Cannot Connect to Google Play</string>
+    <string name="token_oauth2">702840488366-371h2kr5cbnq5bmsne0pphhhkifacc5r.apps.googleusercontent.com</string>
+
 </resources>

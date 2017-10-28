@@ -11,28 +11,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-
-        <activity android:name=".activities.splash"
+        <activity
+            android:name=".activities.splash"
             android:theme="@style/AppTheme.NoActionbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name_semi"
-            android:theme="@style/AppTheme.NoActionbar"/>
+            android:theme="@style/AppTheme.NoActionbar" />
 
         <service
             android:name=".helpers.FcmTokenizer"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
+        <activity android:name=".activities.LoginActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/welcome"/>
     </application>
 
 </manifest>
