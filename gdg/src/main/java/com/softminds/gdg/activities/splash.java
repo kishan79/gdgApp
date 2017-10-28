@@ -9,7 +9,7 @@ import com.softminds.gdg.R;
 
 public class splash extends AppCompatActivity {
 
-    private static final long TIME_OUT = 1500;
+    private static final long TIME_OUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,7 @@ public class splash extends AppCompatActivity {
             @Override
             public void run() {
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                finish();
             }
         },TIME_OUT);
     }
