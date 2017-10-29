@@ -3,6 +3,8 @@ package com.softminds.gdg.utils;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.List;
+
 //This suppress is required because we will not use any setters for this class
 // but we need them because fire base internally use these setters
 @SuppressWarnings("unused")
@@ -11,6 +13,8 @@ public class AppUsers {
     public static final int ADMIN_ACCESS = 122;
     public static final int MEMBER_ACCESS = 120;
     public static final int PUBLIC_ACCESS = 121;
+
+
 
     //data-fields this will be used in a key value pairs in decomposition of this class
     private String name;
@@ -21,6 +25,8 @@ public class AppUsers {
     private int AccessLevel;
     private long MemberSince;
     private long LastSeen;
+    private List<String> Skills;
+    private List<PersonalMessage> personalMessages;
 
 
 
@@ -56,6 +62,14 @@ public class AppUsers {
         return MemberSince;
     }
 
+    public List<String> getSkills() {
+        return Skills;
+    }
+
+    public List<PersonalMessage> getPersonalMessages() {
+        return personalMessages;
+    }
+
     public String getPicUrl() {
         return picUrl;
     }
@@ -89,6 +103,14 @@ public class AppUsers {
         this.AccessLevel = Access;
     }
 
+    public void setSkills(List<String> skills) {
+        Skills = skills;
+    }
+
+    public void setPersonalMessages(List<PersonalMessage> personalMessages) {
+        this.personalMessages = personalMessages;
+    }
+
     public void setLastSeen(long lastSeen) {
         LastSeen = lastSeen;
     }
@@ -119,5 +141,48 @@ public class AppUsers {
             return Email.replace('.',' ').replace('@',' ');
         else
             return null;
+    }
+
+    public static class PersonalMessage{
+        private String body;
+        private long timestamp;
+        private String senderName;
+        private String senderProfileReference;
+
+        PersonalMessage(){
+
+        }
+
+        public long getTimestamp() {
+            return timestamp;
+        }
+
+        public String getBody() {
+            return body;
+        }
+
+        public String getSenderName() {
+            return senderName;
+        }
+
+        public String getSenderProfileReference() {
+            return senderProfileReference;
+        }
+
+        public void setBody(String body) {
+            this.body = body;
+        }
+
+        public void setSenderName(String senderName) {
+            this.senderName = senderName;
+        }
+
+        public void setSenderProfileReference(String senderProfileReference) {
+            this.senderProfileReference = senderProfileReference;
+        }
+
+        public void setTimestamp(long timestamp) {
+            this.timestamp = timestamp;
+        }
     }
 }
