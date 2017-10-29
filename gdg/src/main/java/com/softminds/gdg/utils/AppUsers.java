@@ -25,6 +25,8 @@ public class AppUsers {
     private int AccessLevel;
     private long MemberSince;
     private long LastSeen;
+    private String position;
+    private String aboutMe;
     private List<String> Skills;
     private List<PersonalMessage> personalMessages;
 
@@ -58,12 +60,20 @@ public class AppUsers {
         return authUid;
     }
 
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
     public long getMemberSince() {
         return MemberSince;
     }
 
     public List<String> getSkills() {
         return Skills;
+    }
+
+    public String getPosition() {
+        return position;
     }
 
     public List<PersonalMessage> getPersonalMessages() {
@@ -101,6 +111,14 @@ public class AppUsers {
 
     public void setAccessLevel(int Access) {
         this.AccessLevel = Access;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public void setSkills(List<String> skills) {
