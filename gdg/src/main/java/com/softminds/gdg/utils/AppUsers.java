@@ -14,6 +14,9 @@ public class AppUsers {
     public static final int MEMBER_ACCESS = 120;
     public static final int PUBLIC_ACCESS = 121;
 
+    public static final int GENDER_MALE = 0;
+    public static final int GENDER_FEMALE = 1;
+
 
 
     //data-fields this will be used in a key value pairs in decomposition of this class
@@ -26,6 +29,7 @@ public class AppUsers {
     private long MemberSince;
     private long LastSeen;
     private String position;
+    private int gender;
     private String aboutMe;
     private List<String> Skills;
     private List<PersonalMessage> personalMessages;
@@ -54,6 +58,10 @@ public class AppUsers {
 
     public int getAccessLevel() {
         return AccessLevel;
+    }
+
+    public int getGender() {
+        return gender;
     }
 
     public String getAuthUid() {
@@ -125,6 +133,10 @@ public class AppUsers {
         Skills = skills;
     }
 
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
     public void setPersonalMessages(List<PersonalMessage> personalMessages) {
         this.personalMessages = personalMessages;
     }
@@ -159,6 +171,17 @@ public class AppUsers {
             return Email.replace('.',' ').replace('@',' ');
         else
             return null;
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    public static AppUsers defaultUser() {
+        AppUsers appUsers = new AppUsers();
+        appUsers.setEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        appUsers.setAuthUid(FirebaseAuth.getInstance().getUid());
+        appUsers.setLastSeen(System.currentTimeMillis());
+        appUsers.setMemberSince(System.currentTimeMillis());
+        appUsers.setPicUrl(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString());
+        return appUsers;
     }
 
     public static class PersonalMessage{
