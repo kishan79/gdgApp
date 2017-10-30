@@ -1,179 +1,71 @@
-# Google Developer Group, Jalandhar
+[![Google Developer Group](https://developers.google.com/_static/79b4008122/images/redesign-14/lockup-color.png)](https://developers.google.com/groups/)
 
-[![Android Studio](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+# [Google Developer Group, Jalandhar](http://www.gdgjalandhar.com/)
 
-GDG is a Android Application by the Google Developer Group, for the Google Developer Group. **More to be Added soon**
+This is a Android Application by the Google Developer Group, for the Google Developer Groups. Build from scratch using Google's robust and scalable Cloud platform and Firebase tools, bundled with following cool features
 
-  - Login
+  - Material Design
   - Membership Management
-  - Responsive UI and cool UX
+  - Backend support by Firebase 
 
-# New Features!
+### Features
 
-  - Coming soon
-  - Coming soon
+  - Member, Admin, Public Access Level
+  - Cloud Messaging for Notifications about new events
+  - Chat Rooms build with Real time Database
+  - Direct Messages to individuals (DMs).
+  - A Mark for GDG Membership with Profile showing Position in GDG.
+  - **More to be added soon**
+
+Being a member of  **Google Developer Group** and still using third party services for Communications and Announcements regarding Meetups and other events in GDG. Here is something build from scratch with the help of Google Products for Google Developers. Feel free to Fork and make it better.
+
+> Learning a skill is of no use unless you do something with it that will have a positive impact on our lives.
+
+The above statements were constant source of motivation to bring this project to life.
+
+### Open Source Libararies
+
+**Google Developer App** uses a number of open source libraries to work properly:
+
+* [Glide](https://github.com/bumptech/glide) - An image loading and caching library for Android focused on smooth scrolling
+* [ButterKnife](https://github.com/JakeWharton/butterknife) - Bind Android views and callbacks to fields and methods
+
+And of course **Google Developer Group App** itself is open source [project](www.github.com/coder3101/gdgApp) on Github.
 
 
-You can also:
-  - Coming soon
-  - Coming soon
-  - Coming soon
+### Android Assets 
+**Google Developer App** uses Product-Sans Font assets from [Product Sans-Regular](https://github.com/leotm/ProductSans-Regular), the License of which states :
+> Google offers many fonts on open source terms. This is not one of them. Please see www.google.com/fonts.
+### Building from Source
 
-Markdown is a lightweight markup language based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site][df1]
-
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
-
-This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
-
-### Tech
-
-Dillinger uses a number of open source projects to work properly:
-
-* [AngularJS] - HTML enhanced for web apps!
-* [Ace Editor] - awesome web-based text editor
-* [markdown-it] - Markdown parser done right. Fast and easy to extend.
-* [Twitter Bootstrap] - great UI boilerplate for modern web apps
-* [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework [@tjholowaychuk]
-* [Gulp] - the streaming build system
-* [Breakdance](http://breakdance.io) - HTML to Markdown converter
-* [jQuery] - duh
-
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
-
-### Installation
-
-Dillinger requires [Node.js](https://nodejs.org/) v4+ to run.
-
-Install the dependencies and devDependencies and start the server.
-
-```sh
-$ cd dillinger
-$ npm install -d
-$ node app
-```
-
-For production environments...
-
-```sh
-$ npm install --production
-$ NODE_ENV=production node app
-```
-
-### Plugins
-
-Dillinger is currently extended with the following plugins. Instructions on how to use them in your own application are linked below.
-
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md] [PlDb] |
-| Github | [plugins/github/README.md] [PlGh] |
-| Google Drive | [plugins/googledrive/README.md] [PlGd] |
-| OneDrive | [plugins/onedrive/README.md] [PlOd] |
-| Medium | [plugins/medium/README.md] [PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md] [PlGa] |
-
+GDG App requires [Android Studio 3.0](https://developer.android.com/studio/index.html), compileSdk 27 and [gradle](https://gradle.org/) version 4.1. Compiling the application will require a `google-services.json` file which is not included in the source. To get this file request the [owner](mailto:ashar786khan@gmail.com) of repository  
 
 ### Development
 
 Want to contribute? Great!
 
-Dillinger uses Gulp + Webpack for fast developing.
-Make a change in your file and instantanously see your updates!
-
-Open your favorite Terminal and run these commands.
-
-First Tab:
-```sh
-$ node app
-```
-
-Second Tab:
-```sh
-$ gulp watch
-```
-
-(optional) Third:
-```sh
-$ karma test
-```
-#### Building for source
-For production release:
-```sh
-$ gulp build --prod
-```
-Generating pre-built zip archives for distribution:
-```sh
-$ gulp build dist --prod
-```
-### Docker
-Dillinger is very easy to install and deploy in a Docker container.
-
-By default, the Docker will expose port 8080, so change this within the Dockerfile if necessary. When ready, simply use the Dockerfile to build the image.
-
-```sh
-cd dillinger
-docker build -t joemccann/dillinger:${package.json.version}
-```
-This will create the dillinger image and pull in the necessary dependencies. Be sure to swap out `${package.json.version}` with the actual version of Dillinger.
-
-Once done, run the Docker image and map the port to whatever you wish on your host. In this example, we simply map port 8000 of the host to port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
-
-```sh
-docker run -d -p 8000:8080 --restart="always" <youruser>/dillinger:${package.json.version}
-```
-
-Verify the deployment by navigating to your server address in your preferred browser.
-
-```sh
-127.0.0.1:8000
-```
-
-#### Kubernetes + Google Cloud
-
-See [KUBERNETES.md](https://github.com/joemccann/dillinger/blob/master/KUBERNETES.md)
-
+Fork or clone the repository and contribute to the application's developement.
+The default Code Style of Android Studio is accepted to make the things easier.
+Make sure following things before creating a new Pull request :
+- Your must be consistent and should not uses short variable names that could be confusing.
+- Code should have Comments wherever necessary.
+- Make sure you correctly and precisely explain your changes.
+ 
+ | Correct | Incorrect |
+ |---------|-----------|
+ | ```DatabaseReference ref;``` | ```DatabaseReference x;``` |
 
 ### Todos
-
- - Write MORE Tests
- - Add Night Mode
+ - Complete the App.
 
 License
 ----
 
-MIT
+GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
 
+ Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
 
-**Free Software, Hell Yeah!**
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-
-
-   [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
-   [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
-
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
+[Read More about this here ](https://github.com/coder3101/gdgApp/blob/master/LICENSE)
