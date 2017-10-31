@@ -193,7 +193,12 @@ public class WelcomeFragment extends Fragment implements GoogleApiClient.OnConne
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            ((TextView) root.findViewById(R.id.welcome_login_text)).setText(R.string.database_check);
+
+                            //noinspection ConstantConditions
+                            startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
+                            getActivity().finish();
+
+                            /*((TextView) root.findViewById(R.id.welcome_login_text)).setText(R.string.database_check);
                             ProfileHelper.check(new ProfileHelper.CheckListener() {
                                 @Override
                                 public void OnProfileExist(String profileUrl) {
@@ -222,7 +227,7 @@ public class WelcomeFragment extends Fragment implements GoogleApiClient.OnConne
                                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                     fragmentManager.beginTransaction().replace(R.id.login_fragment_container,new ProfileSetter()).commit();
                                 }
-                            });
+                            });*/
                         }else{
                             Toast.makeText(getContext(),R.string.something_went_wrong,Toast.LENGTH_SHORT).show();
                             removeLoginProgress();
