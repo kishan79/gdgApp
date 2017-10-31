@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        android.support.v4.app.Fragment attached = getSupportFragmentManager().findFragmentById(R.id.login_fragment_container);
+        /*android.support.v4.app.Fragment attached = getSupportFragmentManager().findFragmentById(R.id.login_fragment_container);
         if(attached instanceof WelcomeFragment)
             super.onBackPressed();
         else {
@@ -63,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                                     .replace(R.id.login_fragment_container, new WelcomeFragment()).commit();
                         }
                     }).show();
-        }
+        }*/
+        super.onBackPressed();
     }
 }
