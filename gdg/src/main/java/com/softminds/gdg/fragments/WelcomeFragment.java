@@ -1,3 +1,19 @@
+/*
+*   Copyright (c) Ashar Khan 2017. <ashar786khan@gmail.com>
+*    This file is part of Google Developer Group's Android Application.
+*   Google Developer Group 's Android Application is free software : you can redistribute it and/or modify
+*    it under the terms of GNU General Public License as published by the Free Software Foundation,
+*   either version 3 of the License, or (at your option) any later version.
+*
+*   This Application is distributed in the hope that it will be useful
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+*   or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General  Public License for more details.
+*
+*   You should have received a copy of the GNU General Public License along with this Source File.
+*   If not, see <http:www.gnu.org/licenses/>.
+ */
+
+
 package com.softminds.gdg.fragments;
 
 
@@ -10,6 +26,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +62,7 @@ public class WelcomeFragment extends Fragment implements GoogleApiClient.OnConne
     private static final int FADE_TIME = 1700;
     View root;
 
-    GoogleApiClient mApiClient;
+    GoogleApiClient mApiClient; GoogleSignInOptions gso;
 
     FirebaseAuth mAuth;
 
@@ -61,6 +78,12 @@ public class WelcomeFragment extends Fragment implements GoogleApiClient.OnConne
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_welcome, container, false);
         mAuth = FirebaseAuth.getInstance();
+
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("702840488366-eudmqofkcg91g43t8rg4892gas4335cv.apps.googleusercontent.com")
+                .requestEmail()
+                .build();
+
         return root;
     }
 
@@ -117,20 +140,26 @@ public class WelcomeFragment extends Fragment implements GoogleApiClient.OnConne
         showLoginProgress();
         ((TextView) root.findViewById(R.id.welcome_login_text)).setText(R.string.connecting_with_google);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("702840488366-371h2kr5cbnq5bmsne0pphhhkifacc5r.apps.googleusercontent.com")
-                .requestEmail()
-                .build();
+        if(mApiClient ==null) {
 
-        //noinspection ConstantConditions
-        mApiClient = new GoogleApiClient.Builder(getContext())
-                .enableAutoManage(getActivity(),this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
-                .build();
+            //noinspection ConstantConditions
+            mApiClient = new GoogleApiClient.Builder(getContext())
+                    .enableAutoManage(getActivity(), this)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                    .build();
+        }
 
         startActivityForResult(Auth.GoogleSignInApi.getSignInIntent(mApiClient),999);
 
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //noinspection ConstantConditions
+        mApiClient.stopAutoManage(getActivity());
+        mApiClient.disconnect();
     }
 
     @Override
@@ -141,7 +170,18 @@ public class WelcomeFragment extends Fragment implements GoogleApiClient.OnConne
             if(googleSignInResult.isSuccess()){
                 firebaseAuthWithGoogle(googleSignInResult.getSignInAccount());
             }else{
-                Toast.makeText(getContext(),R.string.auth_error,Toast.LENGTH_SHORT).show();
+                if(googleSignInResult.getStatus().isInterrupted()){
+                    Toast.makeText(getContext(),R.string.login_interrupt,Toast.LENGTH_SHORT).show();
+                    removeLoginProgress();
+                }
+                else {
+                    Toast.makeText(getContext(),
+                            getString(R.string.auth_error)+
+                                    " Error Code : "+googleSignInResult.getStatus().getStatusCode()
+                            , Toast.LENGTH_SHORT).show();
+                    Log.d("WelcomeFragment", "Failed to Log in because " + googleSignInResult.getStatus().toString());
+                    removeLoginProgress();
+                }
             }
         }
     }

@@ -33,7 +33,7 @@
     <string name="sure_to_leave">Are you sure ?</string>
     <string name="back_message">Do you really want to go back ? \nYou have not completed your Profile,
         going back at this stage will result in loss of all saved progress.</string>
-    <string name="profile_complete">Profile Complete</string>
+    <string name="profile_complete">Complete the Profile</string>
     <string name="message_profile_create">We appreciate your Choice for Using official GDG Application to get updated about new events around you.
         \n\nIt seems this is the first time you are using our application so,
         we need to complete your profile. This only takes a minute or so.</string>
@@ -48,6 +48,26 @@
     <string name="my_name_is">My Username is</string>
     <string name="my_email_is">My Email is</string>
     <string name="step1_info_messages">*  You cannot change this email. \n*  Your Username will be visible to members in the group.</string>
+    <string name="my_skills">(Select all that applies)</string>
+
+    <string name="android_skills">Android Development</string>
+    <string name="web_skills">Web Development</string>
+    <string name="cloud">Google Cloud</string>
+    <string name="tensor_flow">TensorFlow</string>
+    <string name="firebase_dev">Firebase Development</string>
+    <string name="public_skills">Public Speaking</string>
+    <string name="promotional">Promotional Skills</string>
+    <string name="step3_agree_messages">You agree to all the terms and conditions of Google Developer Group App.</string>
+    <string name="my_about_me">Describe Yourself in 3 Lines</string>
+    <string name="final_step3_info">* The above text will be visible to public.
+        \n* Your Position and Access Level will be upgraded by your leader once verified.
+        \n* Currently Your Access Level is set to PUBLIC ACCESS.</string>
+    <string name="login_interrupt">Interrupted by User</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="required_field">Required Field</string>
+    <string name="checkbox_missing">Opps !! You missed to click the check box.</string>
+    <string name="skills_required">You need at least one of the following skills to be in GDG</string>
 
 
 </resources>

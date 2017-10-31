@@ -1,3 +1,20 @@
+
+/*
+*   Copyright (c) Ashar Khan 2017. <ashar786khan@gmail.com>
+*    This file is part of Google Developer Group's Android Application.
+*   Google Developer Group 's Android Application is free software : you can redistribute it and/or modify
+*    it under the terms of GNU General Public License as published by the Free Software Foundation,
+*   either version 3 of the License, or (at your option) any later version.
+*
+*   This Application is distributed in the hope that it will be useful
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+*   or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General  Public License for more details.
+*
+*   You should have received a copy of the GNU General Public License along with this Source File.
+*   If not, see <http:www.gnu.org/licenses/>.
+ */
+
+
 package com.softminds.gdg.utils;
 
 
@@ -17,10 +34,22 @@ public class AppUsers {
     public static final int GENDER_MALE = 0;
     public static final int GENDER_FEMALE = 1;
 
+    //Technical SKills
+
+    public static final int ANDROID_DEVELOPMENT = 100;
+    public static final int WEB_DEVELOPMENT = 101;
+    public static final int GOOGLE_CLOUD = 102;
+    public static final int TENSOR_FLOW = 103;
+    public static final int FIRE_BASE_DEVELOPMENT = 104;
+
+    //Non Technical Skills
+    public static final int PUBLIC_SPEAKING = 150;
+    public static final int PROMOTION_SKILLS = 151;
+
 
 
     //data-fields this will be used in a key value pairs in decomposition of this class
-    private String name;
+    private String name; // we take this as username
     private String email;
     private String authUid;
     private String picUrl;
@@ -31,7 +60,9 @@ public class AppUsers {
     private String position;
     private int gender;
     private String aboutMe;
-    private List<String> Skills;
+    private int[]  Skills;
+    @Deprecated
+    private String otherSkills;
     private List<PersonalMessage> personalMessages;
 
 
@@ -56,6 +87,14 @@ public class AppUsers {
         return LastSeen;
     }
 
+    public String getOtherSkills() {
+        return otherSkills;
+    }
+
+    public boolean hasOtherSkills(){
+        return this.otherSkills !=null && !this.otherSkills.isEmpty();
+    }
+
     public int getAccessLevel() {
         return AccessLevel;
     }
@@ -76,7 +115,7 @@ public class AppUsers {
         return MemberSince;
     }
 
-    public List<String> getSkills() {
+    public int[] getSkills() {
         return Skills;
     }
 
@@ -129,7 +168,7 @@ public class AppUsers {
         this.position = position;
     }
 
-    public void setSkills(List<String> skills) {
+    public void setSkills(int[] skills) {
         Skills = skills;
     }
 
@@ -180,6 +219,7 @@ public class AppUsers {
         appUsers.setAuthUid(FirebaseAuth.getInstance().getUid());
         appUsers.setLastSeen(System.currentTimeMillis());
         appUsers.setMemberSince(System.currentTimeMillis());
+        appUsers.setAccessLevel(AppUsers.PUBLIC_ACCESS);
         appUsers.setPicUrl(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString());
         return appUsers;
     }
