@@ -23,6 +23,7 @@ import android.util.Log;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
@@ -44,8 +45,18 @@ public class FcmTokenizer extends FirebaseInstanceIdService {
         }
     }
 
-    private void sendTokenToServer(String token) {
-        String userToken = AppUsers.generateAppUserToken();
+    private void sendTokenToServer(@NonNull String token) {
+        if(!token.isEmpty()) {
+            DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+            database.child("fcmTokens").setValue(token)
+            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.d("Tokenizer :","Saved the token of this user to database");
+                }
+            });
+        }
+        /*String userToken = AppUsers.generateAppUserToken();
         if (userToken == null || userToken.isEmpty()){
             //this should not happen ever
             Log.w(this.getClass().getSimpleName(),"Critical Error : Unique token for user node is null");
@@ -68,5 +79,6 @@ public class FcmTokenizer extends FirebaseInstanceIdService {
                 Log.w("FcmTokenizer","Failed to set the token to server : This user will not receive notifications ",e);
             }
         });
+        */
     }
 }
