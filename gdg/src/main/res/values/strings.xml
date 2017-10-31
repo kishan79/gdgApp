@@ -66,8 +66,18 @@
     <string name="next">Next</string>
     <string name="back">Back</string>
     <string name="required_field">Required Field</string>
-    <string name="checkbox_missing">Opps !! You missed to click the check box.</string>
+    <string name="checkbox_missing">Oops !! You missed to click the check box.</string>
     <string name="skills_required">You need at least one of the following skills to be in GDG</string>
+
+
+    <string name="home">Home</string>
+    <string name="events">Events</string>
+    <string name="admin_access">Admin Tools</string>
+    <string name="notify">Notify</string>
+    <string name="communicate">Communicate</string>
+    <string name="share">Share</string>
+    <string name="about_us">About Us</string>
+    <string name="add_event">Add Event</string>
 
 
 </resources>
