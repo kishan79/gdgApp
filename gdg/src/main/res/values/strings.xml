@@ -78,6 +78,9 @@
     <string name="share">Share</string>
     <string name="about_us">About Us</string>
     <string name="add_event">Add Event</string>
+    <string name="share_text">Hey, I got this Awesome application named GDG App. It notifies me of all the events of GDG Jalandhar.</string>
+    <string name="send_using">Send Using</string>
+    <!--Todo : Put the Download Link here before a release build-->
 
 
 </resources>
