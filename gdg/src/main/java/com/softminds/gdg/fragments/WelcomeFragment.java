@@ -194,6 +194,7 @@ public class WelcomeFragment extends Fragment implements GoogleApiClient.OnConne
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
 
+                            ((TextView) root.findViewById(R.id.welcome_login_text)).setText(R.string.done);
                             //noinspection ConstantConditions
                             startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
                             getActivity().finish();
