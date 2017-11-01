@@ -20,15 +20,18 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.util.TimeUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.softminds.gdg.R;
@@ -42,6 +45,10 @@ public class Notify extends Fragment {
     TextInputEditText title,body;
     Switch aSwitch;
     Button button;
+
+    ProgressBar progress;
+
+    TextInputLayout layout1 ,layout2;
 
     public Notify() {
         // Required empty public constructor
@@ -57,6 +64,11 @@ public class Notify extends Fragment {
         aSwitch = v.findViewById(R.id.switch_sound);
         body = v.findViewById(R.id.notification_body);
         title = v.findViewById(R.id.notification_title);
+        progress = v.findViewById(R.id.progress_message_send);
+
+        layout1 = v.findViewById(R.id.zzs);
+        layout2 = v.findViewById(R.id.zzsa);
+
         return v;
     }
 
@@ -67,17 +79,18 @@ public class Notify extends Fragment {
             @Override
             public void onClick(View view) {
                if(validate()){
+                   Progress(true);
                    String Title = title.getText().toString();
                    String Body = body.getText().toString();
                    boolean silently = !aSwitch.isChecked();
                    //noinspection ConstantConditions
-                   long livetime = 60 * 1000 * 60;
+                   long live_time = 60 * 1000 * 60;
 
                    AdminNotifyHelper adminNotifyHelper = new AdminNotifyHelper(
                            Title,
                            Body,
                            silently,
-                           livetime
+                           live_time
                    );
 
                    AdminNotifyHelper.NotifyAll(adminNotifyHelper).addOnSuccessListener(
@@ -85,13 +98,20 @@ public class Notify extends Fragment {
                                @Override
                                public void onSuccess(Void aVoid) {
                                    Toast.makeText(getContext(),R.string.notified_soon,Toast.LENGTH_SHORT).show();
+                                   Progress(false);
                                }
                            }
-                   );
+                   )
+                   .addOnFailureListener(new OnFailureListener() {
+                       @Override
+                       public void onFailure(@NonNull Exception e) {
+                           Toast.makeText(getContext(),R.string.something_went_wrong,Toast.LENGTH_SHORT).show();
+                           Progress(false);
+                       }
+                   });
 
                    title.setText(null);
                    body.setText(null);
-                   button.setEnabled(false);
                }
             }
         });
@@ -109,5 +129,14 @@ public class Notify extends Fragment {
             return false;
         }
         return true;
+    }
+
+    private void Progress(boolean yes){
+        progress.setVisibility(yes ? View.VISIBLE : View.GONE);
+
+        layout1.setVisibility(yes? View.GONE : View.VISIBLE);
+        layout2.setVisibility(yes ? View.GONE: View.VISIBLE);
+        aSwitch.setVisibility(yes ? View.GONE :View.VISIBLE);
+        button.setVisibility(yes ? View.GONE :View.VISIBLE);
     }
 }

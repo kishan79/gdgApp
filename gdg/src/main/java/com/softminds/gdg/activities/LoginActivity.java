@@ -16,12 +16,9 @@
 
 package com.softminds.gdg.activities;
 
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.softminds.gdg.R;
 import com.softminds.gdg.fragments.WelcomeFragment;
 
