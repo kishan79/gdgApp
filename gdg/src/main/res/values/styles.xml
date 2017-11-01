@@ -43,4 +43,8 @@
     </style>
     <style name="AppTheme.PopupOverlay" parent="Base.ThemeOverlay.AppCompat.Light"/>
 
+    <style name="AppTheme.navTheme">
+        <item name="colorControlHighlight">@color/colorAccent</item>
+    </style>
+
 </resources>

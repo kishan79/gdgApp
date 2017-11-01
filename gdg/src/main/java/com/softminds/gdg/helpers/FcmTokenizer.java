@@ -37,7 +37,7 @@ public class FcmTokenizer extends FirebaseInstanceIdService {
        String token =  FirebaseInstanceId.getInstance().getToken();
        //this is the fcm token to send the notifications to this user
         Log.d(this.getClass().getSimpleName(),"Updated FCM Token :"+token);
-        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+        if(FirebaseAuth.getInstance().getCurrentUser() != null && token !=null){
             sendTokenToServer(token);
         }else{
             Log.d(this.getClass().getSimpleName(),"Ignored the new Token that was generated because " +
@@ -48,7 +48,8 @@ public class FcmTokenizer extends FirebaseInstanceIdService {
     private void sendTokenToServer(@NonNull String token) {
         if(!token.isEmpty()) {
             DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-            database.child("fcmTokens").setValue(token)
+            //noinspection ConstantConditions
+            database.child("root").child("fcmTokens").child(FirebaseAuth.getInstance().getUid()).setValue(token)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {

@@ -26,7 +26,9 @@ import com.softminds.gdg.utils.AppUsers;
 
 public class App extends Application {
 
-    public AppUsers appUser = null;
+    //public AppUsers appUser = null;
+
+    public boolean isAdmin = false;
 
     @Override
     public void onCreate() {
