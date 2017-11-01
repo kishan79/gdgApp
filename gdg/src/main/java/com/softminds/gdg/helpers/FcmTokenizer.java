@@ -34,7 +34,7 @@ public class FcmTokenizer extends FirebaseInstanceIdService {
        String token =  FirebaseInstanceId.getInstance().getToken();
        //this is the fcm token to send the notifications to this user
         Log.d(this.getClass().getSimpleName(),"Updated FCM Token :"+token);
-        if(token !=null){
+        if(token !=null && FirebaseAuth.getInstance().getCurrentUser()!=null){
             sendTokenToServer(token);
         }else{
             Log.d(this.getClass().getSimpleName(),"Ignored the new Token that was generated because " +

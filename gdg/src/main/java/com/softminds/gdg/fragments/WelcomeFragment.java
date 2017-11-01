@@ -41,10 +41,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.softminds.gdg.R;
 import com.softminds.gdg.activities.MainActivity;
 import com.softminds.gdg.utils.Constants;
@@ -151,6 +155,7 @@ public class WelcomeFragment extends Fragment implements GoogleApiClient.OnConne
         super.onPause();
         //noinspection ConstantConditions
         if(mApiClient !=null) {
+            //noinspection ConstantConditions
             mApiClient.stopAutoManage(getActivity());
             mApiClient.disconnect();
         }
@@ -187,42 +192,23 @@ public class WelcomeFragment extends Fragment implements GoogleApiClient.OnConne
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-
+                            String token = FirebaseInstanceId.getInstance().getToken();
+                                if(token!=null &&!token.isEmpty()) {
+                                    DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+                                    //noinspection ConstantConditions
+                                    database.child("root").child("fcmTokens").child(FirebaseAuth.getInstance().getUid()).setValue(token)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d("Tokenizer :", "Saved the token of this user to database");
+                                                }
+                                            });
+                                }
                             ((TextView) root.findViewById(R.id.welcome_login_text)).setText(R.string.done);
                             //noinspection ConstantConditions
                             startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
                             getActivity().finish();
 
-                            /*((TextView) root.findViewById(R.id.welcome_login_text)).setText(R.string.database_check);
-                            ProfileHelper.check(new ProfileHelper.CheckListener() {
-                                @Override
-                                public void OnProfileExist(String profileUrl) {
-                                    ((TextView) root.findViewById(R.id.welcome_login_text)).setText(R.string.gathering_profile);
-                                    FirebaseDatabase.getInstance().getReference(profileUrl)
-                                            .addListenerForSingleValueEvent(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                                    ((TextView) root.findViewById(R.id.welcome_login_text)).setText(R.string.done);
-                                                    //noinspection ConstantConditions
-                                                    ((App)getActivity().getApplication()).appUser = dataSnapshot.getValue(AppUsers.class);
-                                                    startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
-                                                    getActivity().finish();
-                                                }
-
-                                                @Override
-                                                public void onCancelled(DatabaseError databaseError) {
-                                                    //ignore this error : This should not happen mostly
-                                                }
-                                            });
-                                }
-
-                                @Override
-                                public void OnNotExist() {
-                                    //noinspection ConstantConditions
-                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                                    fragmentManager.beginTransaction().replace(R.id.login_fragment_container,new ProfileSetter()).commit();
-                                }
-                            });*/
                         }else{
                             Toast.makeText(getContext(),R.string.something_went_wrong,Toast.LENGTH_SHORT).show();
                             removeLoginProgress();
