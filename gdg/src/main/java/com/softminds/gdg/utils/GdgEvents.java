@@ -18,6 +18,9 @@
 package com.softminds.gdg.utils;
 
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import java.util.List;
 
 @SuppressWarnings("unused") //same reason as that of AppUsers
@@ -108,4 +111,5 @@ public class GdgEvents {
     public void setVenue(String venue) {
         this.venue = venue;
     }
+
 }

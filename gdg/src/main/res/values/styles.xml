@@ -15,6 +15,7 @@
 
 
 <resources>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -33,6 +34,7 @@
     <style name="AppTheme.ActionbarStyle" parent="Widget.AppCompat.Light.ActionBar.Solid">
         <item name="titleTextStyle">@style/AppTheme.ActionbarTitle</item>
     </style>
+
     <style name="AppTheme.ActionbarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/colorAccent</item>
     </style>
@@ -41,10 +43,16 @@
         <item name="android:textColorSecondary">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/colorAccent</item>
     </style>
-    <style name="AppTheme.PopupOverlay" parent="Base.ThemeOverlay.AppCompat.Light"/>
+
+    <style name="AppTheme.PopupOverlay" parent="Base.ThemeOverlay.AppCompat.Light" />
 
     <style name="AppTheme.navTheme">
         <item name="colorControlHighlight">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>

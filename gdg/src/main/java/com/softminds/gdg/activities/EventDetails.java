@@ -1,4 +1,3 @@
-
 /*
 *   Copyright (c) Ashar Khan 2017. <ashar786khan@gmail.com>
 *    This file is part of Google Developer Group's Android Application.
@@ -14,19 +13,25 @@
 *   If not, see <http:www.gnu.org/licenses/>.
  */
 
+package com.softminds.gdg.activities;
 
-package com.softminds.gdg.utils;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
-public class Constants {
+import com.softminds.gdg.R;
 
-    @Deprecated
-    public static class DatabaseConstants{
-        public static final String ROOT = "root";
-        public static final String USERS_LIST = "UsersList";
-        public static final String USERS_LINK = "UsersLink";
-    }
+public class EventDetails extends AppCompatActivity {
 
-    public static class PathConstants{
-        public static final String PRODUCT_SANS_FONT = "fonts/ProductSans-Regular.ttf";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_event_details);
+        Toolbar toolbar =  findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
     }
 }

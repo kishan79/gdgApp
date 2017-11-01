@@ -21,14 +21,16 @@ import android.app.Application;
 import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
-import com.softminds.gdg.utils.AppUsers;
+import com.softminds.gdg.utils.AdminNotifyHelper;
+import com.softminds.gdg.utils.GdgEvents;
+
+import java.util.List;
 
 
 public class App extends Application {
 
-    //public AppUsers appUser = null;
-
-    public boolean isAdmin = false;
+    public List<GdgEvents> events;
+    public AdminNotifyHelper message;
 
     @Override
     public void onCreate() {

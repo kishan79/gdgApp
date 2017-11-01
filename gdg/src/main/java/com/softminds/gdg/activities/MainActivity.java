@@ -20,8 +20,6 @@ package com.softminds.gdg.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -32,12 +30,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.softminds.gdg.R;
+import com.softminds.gdg.fragments.EventLists;
+import com.softminds.gdg.fragments.HomeSection;
+import com.softminds.gdg.fragments.Notify;
+import com.softminds.gdg.utils.AdminNotifyHelper;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -61,7 +64,31 @@ public class MainActivity extends AppCompatActivity
 
         setNavigationHeader();
 
+        setAdminAccess();
 
+        if(savedInstanceState ==null)
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_home,new HomeSection()).commit();
+
+
+
+    }
+
+    private void setAdminAccess() {
+        //noinspection ConstantConditions
+        AdminNotifyHelper.CheckUser(new AdminNotifyHelper.AdminAccess() {
+            @Override
+            public void onResult(boolean granted) {
+                if(granted){
+                    NavigationView navigationView = findViewById(R.id.nav_view);
+                    navigationView.getMenu().findItem(R.id.admin_menu).setVisible(true);
+                }
+            }
+
+            @Override
+            public void InvalidAuth() {
+                Toast.makeText(getApplicationContext(),R.string.denied,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setNavigationHeader() {
@@ -98,12 +125,24 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_home,new HomeSection()).commit();
+            if(getSupportActionBar() !=null)
+                getSupportActionBar().setTitle(R.string.google_dev);
 
         } else if (id == R.id.nav_event) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_home,new EventLists()).commit();
+            if(getSupportActionBar() !=null)
+                getSupportActionBar().setTitle(R.string.events);
 
         } else if (id == R.id.nav_notify) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_home,new Notify()).commit();
+            if(getSupportActionBar() !=null)
+                getSupportActionBar().setTitle(R.string.notify);
 
         } else if (id == R.id.nav_add_event) {
+            startActivity(new Intent(getApplicationContext(),EventDetails.class));
+            if(getSupportActionBar() !=null)
+                getSupportActionBar().setTitle(R.string.add_event);
 
         } else if (id == R.id.nav_share) {
             Intent intent = new Intent(Intent.ACTION_SEND);

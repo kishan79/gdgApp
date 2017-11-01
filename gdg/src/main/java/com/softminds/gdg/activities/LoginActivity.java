@@ -39,31 +39,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        /*android.support.v4.app.Fragment attached = getSupportFragmentManager().findFragmentById(R.id.login_fragment_container);
-        if(attached instanceof WelcomeFragment)
-            super.onBackPressed();
-        else {
-            new AlertDialog.Builder(this)
-                    .setTitle(R.string.sure_to_leave)
-                    .setMessage(R.string.back_message)
-                    .setCancelable(true)
-                    .setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    })
-                    .setNegativeButton(R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            if(FirebaseAuth.getInstance().getCurrentUser()!=null)
-                                FirebaseAuth.getInstance().signOut();
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.login_fragment_container, new WelcomeFragment()).commit();
-                        }
-                    }).show();
-        }*/
         super.onBackPressed();
     }
 }
