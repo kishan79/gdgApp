@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity
                 getSupportActionBar().setTitle(R.string.notify);
 
         } else if (id == R.id.nav_add_event) {
-            startActivity(new Intent(getApplicationContext(),EventDetails.class));
+            //startActivity(new Intent(getApplicationContext(),EventDetails.class));
             if(getSupportActionBar() !=null)
                 getSupportActionBar().setTitle(R.string.add_event);
 

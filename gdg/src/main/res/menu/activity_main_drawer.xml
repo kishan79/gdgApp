@@ -48,6 +48,7 @@
                 android:title="@string/notify" />
             <item
                 android:id="@+id/nav_add_event"
+                android:enabled="false"
                 android:icon="@drawable/ic_add_black_24dp"
                 android:title="@string/add_event" />
             </group>
