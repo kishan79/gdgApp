@@ -190,6 +190,7 @@
     <string name="send">Send</string>
     <string name="missing">Field Missing</string>
     <string name="notified_soon">Message will be delivered soon…</string>
+    <string name="default_notification_channel_id">Default Channel ID</string>
 
 
 </resources>
