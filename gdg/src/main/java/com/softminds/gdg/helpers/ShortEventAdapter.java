@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.softminds.gdg.R;
 import com.softminds.gdg.utils.GdgEvents;
 import com.softminds.gdg.utils.RecyclerItemClickListener;
@@ -40,9 +41,9 @@ public class ShortEventAdapter extends RecyclerView.Adapter<ShortEventAdapter.Ho
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         GdgEvents events = eventsAll.get(position);
-        holder.date.setText(SimpleDateFormat.getDateTimeInstance().format(new Date(events.getTime())));
+        holder.date.setText(SimpleDateFormat.getDateInstance().format(new Date(events.getTime())));
         holder.title.setText(events.getName());
-        Glide.with(parent).asBitmap().load(events.getHeadIconUrl()).into(holder.icon);
+        Glide.with(parent).applyDefaultRequestOptions(RequestOptions.centerInsideTransform()).load(events.getHeadIconUrl()).into(holder.icon);
     }
 
     @Override
@@ -75,39 +76,4 @@ public class ShortEventAdapter extends RecyclerView.Adapter<ShortEventAdapter.Ho
         }
     }
 
-    public static class RecyclerItemClick implements RecyclerView.OnItemTouchListener{
-
-        RecyclerItemClickListener listener;
-
-        GestureDetector detector;
-
-        public RecyclerItemClick(Context ctx,RecyclerItemClickListener l){
-            listener = l;
-            detector = new GestureDetector(ctx,new GestureDetector.SimpleOnGestureListener(){
-               @Override
-                public boolean onSingleTapUp(MotionEvent e){
-                   return true;
-               }
-            });
-        }
-
-        @Override
-        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-           View child = rv.findChildViewUnder(e.getX(),e.getY());
-           if(child!=null && listener !=null && detector.onTouchEvent(e)){
-               listener.OnItemClick(rv.getChildAdapterPosition(child),child);
-           }
-           return false;
-        }
-
-        @Override
-        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-        }
-
-        @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-        }
-    }
 }

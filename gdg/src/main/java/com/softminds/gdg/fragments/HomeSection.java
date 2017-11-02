@@ -33,7 +33,6 @@ import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.softminds.gdg.App;
 import com.softminds.gdg.R;
@@ -43,6 +42,7 @@ import com.softminds.gdg.utils.AdminNotifyHelper;
 import com.softminds.gdg.utils.GdgEvents;
 import com.softminds.gdg.utils.RecyclerItemClickListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -57,7 +57,7 @@ public class HomeSection extends Fragment implements RecyclerItemClickListener {
 
     ProgressBar progressBar;
 
-    List<GdgEvents> events;
+    List<GdgEvents> events = new ArrayList<>();
 
     public HomeSection() {
         // Required empty public constructor
@@ -90,7 +90,6 @@ public class HomeSection extends Fragment implements RecyclerItemClickListener {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(manager);
-        recyclerView.addOnItemTouchListener(new ShortEventAdapter.RecyclerItemClick(getContext(),this));
         loadData();
 
     }

@@ -36,6 +36,11 @@ public class AdminNotifyHelper {
     private long time;
     private String author;
 
+
+    public AdminNotifyHelper(){
+        //required
+    }
+
     public AdminNotifyHelper(String title, String body, boolean silentNotify, long expireTime){
         this.title = title;
         this.body = body;

@@ -33,7 +33,7 @@ public class MessagingService extends FirebaseMessagingService {
         FirebaseDatabase.getInstance().getReference()
                 .child("root")
                 .child("notifications")
-                .child("email")
+                .child("author")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -54,6 +54,9 @@ public class MessagingService extends FirebaseMessagingService {
     }
 
     private void handleMessage(RemoteMessage remoteMessage) {
+
+        //fixme : Handle the messages in forground app. Notify all except sender
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent intent1 = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);

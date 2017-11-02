@@ -32,12 +32,15 @@ public class GdgEvents {
     public static final int DISCUSSION = 5;
     public static final int SEMINAR = 6;
     public static final int WORKSHOP = 7;
+    public static final int FEST = 8;
 
     //data-fields
     private long time;
     private String venue;
     private String name;
     private String author;
+    private String agenda;
+    private List<String> speakers;
     private String extra_details; //any extra payload for event
     private List<String> PicsUrl; //contains list of urls of current event
     private String headIconUrl; //contains central event url
@@ -55,6 +58,13 @@ public class GdgEvents {
         return type;
     }
 
+    public List<String> getSpeaker(){
+        return this.speakers;
+    }
+
+    public String getAgenda(){
+        return this.agenda;
+    }
     public List<String> getPicsUrl() {
         return PicsUrl;
     }
@@ -79,6 +89,9 @@ public class GdgEvents {
         return headIconUrl;
     }
 
+    public void setAgenda(String a){
+        this.agenda = a;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -86,6 +99,10 @@ public class GdgEvents {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public void setSpeakers(List<String> speaker){
+        this.speakers = speaker;
     }
 
     public void setExtra_details(String extra_details) {
