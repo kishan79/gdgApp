@@ -18,10 +18,19 @@ package com.softminds.gdg.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
+import com.softminds.gdg.App;
 import com.softminds.gdg.R;
+import com.softminds.gdg.utils.GdgEvents;
+
+import java.util.List;
 
 public class EventDetails extends AppCompatActivity {
+
+    List<GdgEvents> events;
+
+    GdgEvents source;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +38,24 @@ public class EventDetails extends AppCompatActivity {
         setContentView(R.layout.activity_event_details);
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        events = ((App)getApplication()).events;
+        if(events == null || getIntent().getIntExtra("POSITION",-1) == -1){
+            Log.wtf(getClass().getSimpleName(),"Impossible to click a view unless data is not loaded Or");
+            Log.wtf(getClass().getSimpleName(),"Parent Activity/ Fragment did not provided the POSITION");
+        }
+        else {
+            source = events.get(getIntent().getIntExtra("POSITION",0));
+            loadData();
+        }
+    }
+
+    private void loadData() {
+        //noinspection ConstantConditions
+        getSupportActionBar().setTitle(source.getName());
     }
 }

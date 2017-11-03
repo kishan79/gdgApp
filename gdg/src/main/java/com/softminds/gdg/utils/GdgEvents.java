@@ -18,8 +18,6 @@
 package com.softminds.gdg.utils;
 
 
-import android.content.Intent;
-import android.os.Bundle;
 
 import java.util.List;
 
