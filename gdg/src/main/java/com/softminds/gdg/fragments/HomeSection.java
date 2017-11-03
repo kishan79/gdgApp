@@ -38,6 +38,7 @@ import com.softminds.gdg.App;
 import com.softminds.gdg.R;
 import com.softminds.gdg.helpers.ShortEventAdapter;
 import com.softminds.gdg.utils.AdminNotifyHelper;
+import com.softminds.gdg.utils.Constants;
 import com.softminds.gdg.utils.GdgEvents;
 
 import java.text.SimpleDateFormat;
@@ -80,11 +81,6 @@ public class HomeSection extends Fragment {
         notificationTitle = v.findViewById(R.id.notification_title);
         progressBar = v.findViewById(R.id.home_progress);
 
-
-        notificationTitle.setTypeface(typeface);
-        notificationMessage.setTypeface(typeface);
-        notificationAuthorTime.setTypeface(typeface);
-
         return v;
     }
 
@@ -98,6 +94,8 @@ public class HomeSection extends Fragment {
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+        //noinspection ConstantConditions
+        typeface = Typeface.createFromAsset(getActivity().getAssets(), Constants.PathConstants.PRODUCT_SANS_FONT);
         loadData();
 
     }
@@ -166,6 +164,11 @@ public class HomeSection extends Fragment {
                 + getString(R.string.time) + " : "
                 + SimpleDateFormat.getDateTimeInstance().format(new Date(value.getTime()));
         notificationAuthorTime.setText(text);
+
+        notificationTitle.setTypeface(typeface);
+        notificationMessage.setTypeface(typeface);
+        notificationAuthorTime.setTypeface(typeface);
+
         ProgressShow(false);
     }
 
