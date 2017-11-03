@@ -16,7 +16,6 @@
 package com.softminds.gdg.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,11 +35,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.softminds.gdg.App;
 import com.softminds.gdg.R;
-import com.softminds.gdg.activities.EventDetails;
 import com.softminds.gdg.helpers.ShortEventAdapter;
 import com.softminds.gdg.utils.AdminNotifyHelper;
 import com.softminds.gdg.utils.GdgEvents;
-import com.softminds.gdg.utils.RecyclerItemClickListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -98,27 +95,36 @@ public class HomeSection extends Fragment {
 
     private void loadData() {
 
-        FirebaseDatabase.getInstance().getReference()
-                .child("root")
-                .child("events")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()){
-                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                                events.add(snapshot.getValue(GdgEvents.class));
+        //noinspection ConstantConditions
+        if(((App)getActivity().getApplication()).events != null && ((App)getActivity().getApplication()).message != null) {
+            adapter = new ShortEventAdapter(events);
+            recyclerView.setAdapter(adapter);
+            loadCardData(((App)getActivity().getApplication()).message);
+            ProgressShow(false);
+        }else {
+
+            FirebaseDatabase.getInstance().getReference()
+                    .child("root")
+                    .child("events")
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    events.add(snapshot.getValue(GdgEvents.class));
+                                }
+                                adapter = new ShortEventAdapter(events);
+                                recyclerView.setAdapter(adapter);
+                                loadMessage();
                             }
-                            adapter = new ShortEventAdapter(events);
-                            recyclerView.setAdapter(adapter);
-                            loadMessage();
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
+        }
     }
 
     private void loadMessage() {
