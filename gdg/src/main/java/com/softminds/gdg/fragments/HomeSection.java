@@ -48,7 +48,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class HomeSection extends Fragment implements RecyclerItemClickListener {
+public class HomeSection extends Fragment {
 
     RecyclerView recyclerView;
     TextView notificationTitle, notificationMessage,notificationAuthorTime;
@@ -163,10 +163,4 @@ public class HomeSection extends Fragment implements RecyclerItemClickListener {
 
     }
 
-    @Override
-    public void OnItemClick(int position, View data) {
-        Intent i = new Intent(getContext(), EventDetails.class);
-        i.putExtra("POSITION",position);
-        startActivity(i);
-    }
 }
