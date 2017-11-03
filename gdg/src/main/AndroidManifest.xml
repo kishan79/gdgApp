@@ -57,7 +57,6 @@
             android:theme="@style/AppTheme.NoActionbar" />
         <activity
             android:name=".activities.EventDetails"
-            android:label="@string/title_activity_event_details"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <service
