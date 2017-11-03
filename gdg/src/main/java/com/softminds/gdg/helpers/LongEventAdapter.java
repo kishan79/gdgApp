@@ -31,6 +31,7 @@ public class LongEventAdapter extends RecyclerView.Adapter<LongEventAdapter.Even
 
     @Override
     public EventHolder  onCreateViewHolder(ViewGroup parent, int viewType) {
+        ctx = parent.getContext();
         return new EventHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.long_event_adapter,parent,false));
     }
 
