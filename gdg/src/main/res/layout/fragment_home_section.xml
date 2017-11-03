@@ -99,16 +99,23 @@
                 android:layout_marginStart="5dp"
                 tools:text="This is a dummy Notification body"
                 android:layout_toEndOf="@id/app_icon_notification" />
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorAccent"
+                android:layout_below="@id/notification_message"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="65dp"/>
             <TextView
                 android:id="@+id/notification_author_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/notification_message"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
+                android:textSize="12sp"
                 tools:text="Author : Ashar\nTime : 3-Nov-2017"
-
                 android:layout_toEndOf="@id/app_icon_notification"
                 android:maxLines="3" />
 

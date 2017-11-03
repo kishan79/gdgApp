@@ -54,7 +54,6 @@ public class LongEventAdapter extends RecyclerView.Adapter<LongEventAdapter.Even
     public void onBindViewHolder(EventHolder holder, int position) {
         GdgEvents event = this.events.get(position);
         holder.title.setText(event.getName());
-        holder.date.setText(SimpleDateFormat.getDateInstance().format(new Date(event.getTime())));
         holder.extra.setText(event.getExtra_details());
 
         Glide.with(ctx).setDefaultRequestOptions(RequestOptions.centerInsideTransform()).asBitmap().load(event.getHeadIconUrl()).into(holder.headIcon);
@@ -68,14 +67,13 @@ public class LongEventAdapter extends RecyclerView.Adapter<LongEventAdapter.Even
 
     static class EventHolder extends RecyclerView.ViewHolder{
 
-        TextView title, date, extra;
+        TextView title, extra;
         ImageView headIcon;
 
         EventHolder(View itemView) {
             super(itemView);
             headIcon  = itemView.findViewById(R.id.image_long_adapter);
             title = itemView.findViewById(R.id.long_adapter_event_title);
-            date = itemView.findViewById(R.id.long_adapter_event_date);
             extra = itemView.findViewById(R.id.long_adapter_extra_details);
         }
     }

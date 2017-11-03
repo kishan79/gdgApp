@@ -73,6 +73,7 @@ public class HomeSection extends Fragment {
         lastMessage = v.findViewById(R.id.home_last_message);
         recyclerView = v.findViewById(R.id.home_recycler_event);
         notificationMessage = v.findViewById(R.id.notification_message);
+        notificationAuthorTime = v.findViewById(R.id.notification_author_time);
         notificationTitle = v.findViewById(R.id.notification_title);
         progressBar = v.findViewById(R.id.home_progress);
 
@@ -89,6 +90,7 @@ public class HomeSection extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
         loadData();
 
     }
@@ -97,7 +99,7 @@ public class HomeSection extends Fragment {
 
         //noinspection ConstantConditions
         if(((App)getActivity().getApplication()).events != null && ((App)getActivity().getApplication()).message != null) {
-            adapter = new ShortEventAdapter(events);
+            adapter.setData(((App)getActivity().getApplication()).events);
             recyclerView.setAdapter(adapter);
             loadCardData(((App)getActivity().getApplication()).message);
             ProgressShow(false);
@@ -113,7 +115,8 @@ public class HomeSection extends Fragment {
                                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                     events.add(snapshot.getValue(GdgEvents.class));
                                 }
-                                adapter = new ShortEventAdapter(events);
+                                ((App)getActivity().getApplication()).events = events;
+                                adapter.setData(events);
                                 recyclerView.setAdapter(adapter);
                                 loadMessage();
                             }

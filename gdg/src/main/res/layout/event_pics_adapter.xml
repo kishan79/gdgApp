@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    app:cardBackgroundColor="@color/cardsColor"
+    app:cardUseCompatPadding="true"
+    android:focusable="true"
+    android:clickable="true"
+    android:foreground="?selectableItemBackground"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pics_adapter_source"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?selectableItemBackground"/>
+
+
+</android.support.v7.widget.CardView>

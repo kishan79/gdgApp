@@ -70,6 +70,7 @@ public class ShortEventAdapter extends RecyclerView.Adapter<ShortEventAdapter.Ho
 
     public void setData(List<GdgEvents> events){
         this.eventsAll= events;
+        notifyDataSetChanged();
     }
 
     public List<GdgEvents> getData() {

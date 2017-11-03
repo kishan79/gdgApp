@@ -56,8 +56,8 @@ public class GdgEvents {
         return type;
     }
 
-    public List<String> getSpeaker(){
-        return this.speakers;
+    public List<String> getSpeakers() {
+        return speakers;
     }
 
     public String getAgenda(){
@@ -99,8 +99,8 @@ public class GdgEvents {
         this.author = author;
     }
 
-    public void setSpeakers(List<String> speaker){
-        this.speakers = speaker;
+    public void setSpeakers(List<String> speakers) {
+        this.speakers = speakers;
     }
 
     public void setExtra_details(String extra_details) {
