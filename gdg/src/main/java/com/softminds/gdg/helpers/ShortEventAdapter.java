@@ -17,6 +17,7 @@
 package com.softminds.gdg.helpers;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
@@ -30,6 +31,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.softminds.gdg.R;
+import com.softminds.gdg.utils.Constants;
 import com.softminds.gdg.utils.GdgEvents;
 import com.softminds.gdg.utils.RecyclerItemClickListener;
 
@@ -42,15 +44,15 @@ public class ShortEventAdapter extends RecyclerView.Adapter<ShortEventAdapter.Ho
 
     private List<GdgEvents> eventsAll;
     private Context parent;
-    public ShortEventAdapter(List<GdgEvents> events){
-        eventsAll = events;
-    }
+
+    private Typeface typeface;
     public ShortEventAdapter(){
     }
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         this.parent = parent.getContext();
+        typeface = Typeface.createFromAsset(parent.getContext().getAssets(), Constants.PathConstants.PRODUCT_SANS_FONT);
        return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.short_adapter,parent,false));
     }
 
@@ -60,6 +62,11 @@ public class ShortEventAdapter extends RecyclerView.Adapter<ShortEventAdapter.Ho
         holder.date.setText(SimpleDateFormat.getDateInstance().format(new Date(events.getTime())));
         holder.title.setText(events.getName());
         holder.venue.setText(events.getVenue());
+
+        holder.title.setTypeface(typeface);
+        holder.date.setTypeface(typeface);
+        holder.venue.setTypeface(typeface);
+
         Glide.with(parent).applyDefaultRequestOptions(RequestOptions.centerInsideTransform()).load(events.getHeadIconUrl()).into(holder.icon);
     }
 

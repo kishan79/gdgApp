@@ -16,6 +16,7 @@
 package com.softminds.gdg.fragments;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -58,6 +59,8 @@ public class HomeSection extends Fragment {
 
     List<GdgEvents> events = new ArrayList<>();
 
+    Typeface typeface;
+
     public HomeSection() {
         // Required empty public constructor
     }
@@ -77,6 +80,10 @@ public class HomeSection extends Fragment {
         notificationTitle = v.findViewById(R.id.notification_title);
         progressBar = v.findViewById(R.id.home_progress);
 
+
+        notificationTitle.setTypeface(typeface);
+        notificationMessage.setTypeface(typeface);
+        notificationAuthorTime.setTypeface(typeface);
 
         return v;
     }

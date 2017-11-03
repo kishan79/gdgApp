@@ -16,6 +16,7 @@
 package com.softminds.gdg.helpers;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,10 +27,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.softminds.gdg.R;
+import com.softminds.gdg.utils.Constants;
 import com.softminds.gdg.utils.GdgEvents;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 
@@ -39,6 +39,8 @@ public class LongEventAdapter extends RecyclerView.Adapter<LongEventAdapter.Even
 
     private Context ctx;
 
+    private Typeface typeface;
+
     public LongEventAdapter(List<GdgEvents> events1){
         this.events = events1;
     }
@@ -47,6 +49,7 @@ public class LongEventAdapter extends RecyclerView.Adapter<LongEventAdapter.Even
     @Override
     public EventHolder  onCreateViewHolder(ViewGroup parent, int viewType) {
         ctx = parent.getContext();
+        typeface = Typeface.createFromAsset(parent.getContext().getAssets(), Constants.PathConstants.PRODUCT_SANS_FONT);
         return new EventHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.long_event_adapter,parent,false));
     }
 
@@ -55,6 +58,9 @@ public class LongEventAdapter extends RecyclerView.Adapter<LongEventAdapter.Even
         GdgEvents event = this.events.get(position);
         holder.title.setText(event.getName());
         holder.extra.setText(event.getExtra_details());
+
+        holder.extra.setTypeface(typeface);
+        holder.title.setTypeface(typeface);
 
         Glide.with(ctx).setDefaultRequestOptions(RequestOptions.centerInsideTransform()).asBitmap().load(event.getHeadIconUrl()).into(holder.headIcon);
 
