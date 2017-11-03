@@ -191,6 +191,8 @@
     <string name="missing">Field Missing</string>
     <string name="notified_soon">Message will be delivered soon…</string>
     <string name="default_notification_channel_id">Default Channel ID</string>
+    <string name="author">Author</string>
+    <string name="time">Time</string>
 
 
 </resources>

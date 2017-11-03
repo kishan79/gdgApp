@@ -42,14 +42,16 @@ import com.softminds.gdg.utils.AdminNotifyHelper;
 import com.softminds.gdg.utils.GdgEvents;
 import com.softminds.gdg.utils.RecyclerItemClickListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 public class HomeSection extends Fragment implements RecyclerItemClickListener {
 
     RecyclerView recyclerView;
-    TextView notificationTitle, notificationMessage;
+    TextView notificationTitle, notificationMessage,notificationAuthorTime;
     TextView lastMessage,Events;
     CardView card;
 
@@ -144,6 +146,10 @@ public class HomeSection extends Fragment implements RecyclerItemClickListener {
     private void loadCardData(AdminNotifyHelper value) {
         notificationMessage.setText(value.getBody());
         notificationTitle.setText(value.getTitle());
+        String text = getString(R.string.author) + " : " + value.getAuthor() + "\n"
+                + getString(R.string.time) + " : "
+                + SimpleDateFormat.getDateTimeInstance().format(new Date(value.getTime()));
+        notificationAuthorTime.setText(text);
         ProgressShow(false);
     }
 
