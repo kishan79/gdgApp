@@ -25,18 +25,29 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.softminds.gdg.App;
 import com.softminds.gdg.R;
 import com.softminds.gdg.activities.EventDetails;
 import com.softminds.gdg.helpers.LongEventAdapter;
 import com.softminds.gdg.helpers.RecyclerItemClick;
+import com.softminds.gdg.helpers.ShortEventAdapter;
+import com.softminds.gdg.utils.GdgEvents;
 import com.softminds.gdg.utils.RecyclerItemClickListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class EventLists extends Fragment implements RecyclerItemClickListener {
 
     RecyclerView mRecycler;
+    ProgressBar progressBar;
 
     public EventLists() {
         // Required empty public constructor
@@ -50,6 +61,7 @@ public class EventLists extends Fragment implements RecyclerItemClickListener {
         // Inflate the layout for this fragment
 
         mRecycler = v.findViewById(R.id.main_recycler_event);
+        progressBar = v.findViewById(R.id.long_adapter_loading);
         return v;
 
     }
@@ -65,7 +77,37 @@ public class EventLists extends Fragment implements RecyclerItemClickListener {
         mRecycler.setHasFixedSize(true);
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         mRecycler.addOnItemTouchListener(new RecyclerItemClick(getContext(),this));
-        mRecycler.setAdapter(new LongEventAdapter(((App)getActivity().getApplication()).events));
+        if(((App)getActivity().getApplication()).events !=null)
+            mRecycler.setAdapter(new LongEventAdapter(((App)getActivity().getApplication()).events));
+        else{
+            ProgressLoad(true);
+            final List<GdgEvents> events = new ArrayList<>();
+            FirebaseDatabase.getInstance().getReference()
+                    .child("root")
+                    .child("events")
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    events.add(snapshot.getValue(GdgEvents.class));
+                                }
+                                mRecycler.setAdapter(new LongEventAdapter(events));
+                                ProgressLoad(false);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+        }
+    }
+
+    private void ProgressLoad(boolean b) {
+        mRecycler.setVisibility(b ? View.GONE : View.VISIBLE);
+        progressBar.setVisibility(b ? View.VISIBLE  : View.GONE);
     }
 
     @Override
