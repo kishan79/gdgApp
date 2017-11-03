@@ -43,6 +43,7 @@ public class ShortEventAdapter extends RecyclerView.Adapter<ShortEventAdapter.Ho
         GdgEvents events = eventsAll.get(position);
         holder.date.setText(SimpleDateFormat.getDateInstance().format(new Date(events.getTime())));
         holder.title.setText(events.getName());
+        holder.venue.setText(events.getVenue());
         Glide.with(parent).applyDefaultRequestOptions(RequestOptions.centerInsideTransform()).load(events.getHeadIconUrl()).into(holder.icon);
     }
 
@@ -64,6 +65,7 @@ public class ShortEventAdapter extends RecyclerView.Adapter<ShortEventAdapter.Ho
         ImageView icon;
         TextView title;
         TextView date;
+        TextView venue;
         CardView cardView;
 
         Holder(View itemView) {
@@ -72,6 +74,7 @@ public class ShortEventAdapter extends RecyclerView.Adapter<ShortEventAdapter.Ho
          cardView =    itemView.findViewById(R.id.short_adapter_card);
          date =    itemView.findViewById(R.id.short_adapter_date);
          title =    itemView.findViewById(R.id.short_adapter_title);
+         venue = itemView.findViewById(R.id.short_adapter_venue);
           icon =   itemView.findViewById(R.id.short_adapter_image);
         }
     }
