@@ -38,7 +38,7 @@
     <item
         android:title="@string/admin_access"
         android:id="@+id/admin_menu"
-        android:visible="true">
+        android:visible="false">
 
         <menu>
             <group android:checkableBehavior="single">
