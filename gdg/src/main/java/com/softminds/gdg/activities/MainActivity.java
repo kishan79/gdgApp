@@ -36,6 +36,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.softminds.gdg.BuildConfig;
 import com.softminds.gdg.R;
 import com.softminds.gdg.fragments.EventLists;
 import com.softminds.gdg.fragments.HomeSection;
@@ -66,11 +68,24 @@ public class MainActivity extends AppCompatActivity
 
         setAdminAccess();
 
+        usersListSet();
+
         if(savedInstanceState ==null)
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_home,new HomeSection()).commit();
 
 
 
+    }
+
+    private void usersListSet() {
+        //noinspection ConstantConditions
+        String email =  FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        //noinspection ConstantConditions
+        FirebaseDatabase.getInstance().getReference()
+                .child("root")
+                .child("userList")
+                .child(email.replace('@','_').replace('.','_'))
+                .setValue(BuildConfig.VERSION_NAME);
     }
 
     private void setAdminAccess() {

@@ -33,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.softminds.gdg.R;
+import com.softminds.gdg.activities.LoginActivity;
 import com.softminds.gdg.activities.MainActivity;
 
 import java.util.Objects;
@@ -43,8 +44,6 @@ public class MessagingService extends FirebaseMessagingService {
     public void onMessageReceived(final RemoteMessage remoteMessage) {
         //We will not send any payload to this device so no need to check this.
 
-        if(FirebaseAuth.getInstance().getCurrentUser() ==null)
-            return;
         FirebaseDatabase.getInstance().getReference()
                 .child("root")
                 .child("notifications")
@@ -72,7 +71,7 @@ public class MessagingService extends FirebaseMessagingService {
 
         //fixme : Handle the messages in forground app. Notify all except sender
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, FirebaseAuth.getInstance().getCurrentUser() == null ? LoginActivity.class:MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent intent1 = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
 
