@@ -19,7 +19,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:cardBackgroundColor="@color/cardsColor"
     android:foreground="?selectableItemBackground"
-    android:layout_width="match_parent"
+    android:layout_width="350dp"
     android:id="@+id/short_adapter_card"
     android:clickable="true"
     app:cardUseCompatPadding="true"
