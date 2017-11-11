@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void OnUpdateAvailable(int versionCode, String versionName, String changeLogs, boolean mustUpdate, final String url) {
         AlertDialog.Builder baseDialog = new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.new_available) + versionName)
+                .setTitle(getString(R.string.new_available) + " " + versionName)
                 .setPositiveButton(R.string.update_now, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
