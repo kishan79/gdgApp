@@ -56,10 +56,6 @@ public class HomeSection extends Fragment {
 
     ShortEventAdapter adapter = new ShortEventAdapter();
 
-    ProgressBar progressBar;
-
-    List<GdgEvents> events = new ArrayList<>();
-
     Typeface typeface;
 
     public HomeSection() {
@@ -79,7 +75,6 @@ public class HomeSection extends Fragment {
         notificationMessage = v.findViewById(R.id.notification_message);
         notificationAuthorTime = v.findViewById(R.id.notification_author_time);
         notificationTitle = v.findViewById(R.id.notification_title);
-        progressBar = v.findViewById(R.id.home_progress);
 
         return v;
     }
@@ -88,98 +83,43 @@ public class HomeSection extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ProgressShow(true);
+
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+        UpdateMessages();
+        UpdateEvents();
         //noinspection ConstantConditions
         typeface = Typeface.createFromAsset(getActivity().getAssets(), Constants.PathConstants.PRODUCT_SANS_FONT);
-        loadData();
 
     }
 
-    private void loadData() {
-
+    public void UpdateMessages() {
         //noinspection ConstantConditions
-        if(((App)getActivity().getApplication()).events != null && ((App)getActivity().getApplication()).message != null) {
-            adapter.setData(((App)getActivity().getApplication()).events);
-            recyclerView.setAdapter(adapter);
-            loadCardData(((App)getActivity().getApplication()).message);
-            ProgressShow(false);
-        }else {
+        AdminNotifyHelper value = ((App)getActivity().getApplication()).message;
+        //getActivity Cannot be null because this method is only called if this fragment is attached to the activity
+        if(value !=null) {
+            notificationMessage.setText(value.getBody());
+            notificationTitle.setText(value.getTitle());
+            String text = getString(R.string.author) + " : " + value.getAuthor() + "\n"
+                    + getString(R.string.time) + " : "
+                    + SimpleDateFormat.getDateTimeInstance().format(new Date(value.getTime()));
+            notificationAuthorTime.setText(text);
 
-            FirebaseDatabase.getInstance().getReference()
-                    .child("root")
-                    .child("events")
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.exists()) {
-                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                    events.add(snapshot.getValue(GdgEvents.class));
-                                }
-                                ((App)getActivity().getApplication()).events = events;
-                                adapter.setData(events);
-                                recyclerView.setAdapter(adapter);
-                                loadMessage();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
+            notificationTitle.setTypeface(typeface);
+            notificationMessage.setTypeface(typeface);
+            notificationAuthorTime.setTypeface(typeface);
         }
     }
 
-    private void loadMessage() {
-        FirebaseDatabase.getInstance().getReference()
-                .child("root")
-                .child("notifications")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()){
-                            loadCardData(dataSnapshot.getValue(AdminNotifyHelper.class));
-                            if(getActivity()!=null){
-                                ((App)getActivity().getApplication()).message = dataSnapshot.getValue(AdminNotifyHelper.class);
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+    public void UpdateEvents() {
+        //noinspection ConstantConditions
+        List<GdgEvents> events = ((App)getActivity().getApplication()).events;
+        if(events !=null) {
+            adapter.setData(events);
+            adapter.notifyDataSetChanged();
+        }
     }
-
-    private void loadCardData(AdminNotifyHelper value) {
-        notificationMessage.setText(value.getBody());
-        notificationTitle.setText(value.getTitle());
-        String text = getString(R.string.author) + " : " + value.getAuthor() + "\n"
-                + getString(R.string.time) + " : "
-                + SimpleDateFormat.getDateTimeInstance().format(new Date(value.getTime()));
-        notificationAuthorTime.setText(text);
-
-        notificationTitle.setTypeface(typeface);
-        notificationMessage.setTypeface(typeface);
-        notificationAuthorTime.setTypeface(typeface);
-
-        ProgressShow(false);
-    }
-
-    void ProgressShow(boolean yes){
-        progressBar.setVisibility(yes? View.VISIBLE : View.GONE);
-
-        card.setVisibility(yes? View.GONE : View.VISIBLE);
-        recyclerView.setVisibility(yes? View.GONE : View.VISIBLE);
-        lastMessage.setVisibility(yes? View.GONE : View.VISIBLE);
-        Events.setVisibility(yes? View.GONE : View.VISIBLE);
-
-    }
-
 }

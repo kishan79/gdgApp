@@ -14,7 +14,8 @@
     If not, see <http:www.gnu.org/licenses/>.-->
 
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
@@ -28,6 +29,10 @@
             android:id="@+id/nav_event"
             android:icon="@drawable/ic_event_black_24dp"
             android:title="@string/events" />
+        <item
+            android:id="@+id/nav_chats"
+            android:title="@string/chat_rooms"
+            /><!--todo : Add a new Chat Icon here -->
         <item
             android:id="@+id/nav_signOut"
             android:icon="@drawable/ic_power_settings_new_black_24dp"

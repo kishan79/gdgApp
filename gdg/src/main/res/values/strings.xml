@@ -109,6 +109,7 @@
     <string name="new_available">Update Available : </string>
     <string name="update_now">Update</string>
     <string name="ignore">Ignore</string>
+    <string name="chat_rooms">Chat Room</string>
 
 
 </resources>

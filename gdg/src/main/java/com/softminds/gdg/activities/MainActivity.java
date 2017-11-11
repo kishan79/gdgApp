@@ -31,7 +31,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +41,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.softminds.gdg.App;
 import com.softminds.gdg.BuildConfig;
 import com.softminds.gdg.R;
 import com.softminds.gdg.fragments.EventLists;
@@ -47,9 +53,18 @@ import com.softminds.gdg.fragments.HomeSection;
 import com.softminds.gdg.fragments.Notify;
 import com.softminds.gdg.utils.AdminNotifyHelper;
 import com.softminds.gdg.utils.AppUpdateChecker;
+import com.softminds.gdg.utils.GdgEvents;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.FutureTask;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AppUpdateChecker.UpdateListener {
+        implements NavigationView.OnNavigationItemSelectedListener, AppUpdateChecker.UpdateListener,ValueEventListener {
+
+    ProgressBar mProgressbar;
+    FrameLayout mFragmentContainer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +83,17 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        mProgressbar = findViewById(R.id.content_loading_progress);
+        mFragmentContainer = findViewById(R.id.fragment_container_home);
+
         setNavigationHeader();
 
         setAdminAccess();
 
         usersListSet();
 
-        checkUpdate();
+        AppUpdateChecker.CheckUpdate(this);
+
 
         if(savedInstanceState ==null)
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_home,new HomeSection()).commit();
@@ -83,9 +102,36 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void checkUpdate() {
-        AppUpdateChecker.CheckUpdate(this);
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseDatabase.getInstance().getReference()
+                .child("root")
+                .child("events")
+                .addValueEventListener(this);
     }
+
+    final ValueEventListener notificationListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            if(dataSnapshot.exists()){
+                ((App)getApplication()).message = dataSnapshot.getValue(AdminNotifyHelper.class);
+                if(mProgressbar.getVisibility() == View.VISIBLE){
+                   mFragmentContainer.setVisibility(View.VISIBLE);
+                   mProgressbar.setVisibility(View.GONE);
+                }
+                if(getSupportFragmentManager().findFragmentById(R.id.fragment_container_home) instanceof HomeSection){
+                    ((HomeSection) getSupportFragmentManager().findFragmentById(R.id.fragment_container_home)).UpdateMessages();
+                }
+
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
 
     private void usersListSet() {
         //noinspection ConstantConditions
@@ -190,6 +236,21 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        FirebaseDatabase.getInstance().getReference()
+                .child("root")
+                .child("events")
+                .removeEventListener(this);
+        if(mProgressbar.getVisibility() == View.GONE || mProgressbar.getVisibility() == View.INVISIBLE){
+            FirebaseDatabase.getInstance().getReference()
+                    .child("root")
+                    .child("notifications")
+                    .removeEventListener(notificationListener);
+        }
+    }
+
+    @Override
     public void OnUpdateAvailable(int versionCode, String versionName, String changeLogs, boolean mustUpdate, final String url) {
         AlertDialog.Builder baseDialog = new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.new_available) + " " + versionName)
@@ -218,5 +279,28 @@ public class MainActivity extends AppCompatActivity
                         }
                     }).create().show();
         }
+    }
+
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        if(dataSnapshot.exists()){
+            ((App)getApplication()).events = new ArrayList<>();
+            for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
+                ((App) getApplication()).events.add(dataSnapshot1.getValue(GdgEvents.class));
+            if(getSupportFragmentManager().findFragmentById(R.id.fragment_container_home) instanceof HomeSection){
+                ((HomeSection) getSupportFragmentManager().findFragmentById(R.id.fragment_container_home)).UpdateEvents();
+            }
+            if(mProgressbar.getVisibility() == View.VISIBLE) {
+                FirebaseDatabase.getInstance().getReference()
+                        .child("root")
+                        .child("notifications")
+                        .addValueEventListener(notificationListener);
+            }
+        }
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
     }
 }

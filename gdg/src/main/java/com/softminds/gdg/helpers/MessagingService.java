@@ -44,6 +44,8 @@ public class MessagingService extends FirebaseMessagingService {
     public void onMessageReceived(final RemoteMessage remoteMessage) {
         //We will not send any payload to this device so no need to check this.
 
+        Log.d(getClass().getSimpleName(),"Message Received from server while in foreground");
+
         FirebaseDatabase.getInstance().getReference()
                 .child("root")
                 .child("notifications")
@@ -69,7 +71,7 @@ public class MessagingService extends FirebaseMessagingService {
 
     private void handleMessage(RemoteMessage remoteMessage) {
 
-        //fixme : Handle the messages in forground app. Notify all except sender
+        //fixme : Handle the messages in foreground app. Notify all except sender
 
         Intent intent = new Intent(this, FirebaseAuth.getInstance().getCurrentUser() == null ? LoginActivity.class:MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
