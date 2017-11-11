@@ -17,9 +17,12 @@
 
 package com.softminds.gdg.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -43,9 +46,10 @@ import com.softminds.gdg.fragments.EventLists;
 import com.softminds.gdg.fragments.HomeSection;
 import com.softminds.gdg.fragments.Notify;
 import com.softminds.gdg.utils.AdminNotifyHelper;
+import com.softminds.gdg.utils.AppUpdateChecker;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, AppUpdateChecker.UpdateListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +74,17 @@ public class MainActivity extends AppCompatActivity
 
         usersListSet();
 
+        checkUpdate();
+
         if(savedInstanceState ==null)
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_home,new HomeSection()).commit();
 
 
 
+    }
+
+    private void checkUpdate() {
+        AppUpdateChecker.CheckUpdate(this);
     }
 
     private void usersListSet() {
@@ -177,5 +187,36 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void OnUpdateAvailable(int versionCode, String versionName, String changeLogs, boolean mustUpdate, final String url) {
+        AlertDialog.Builder baseDialog = new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.new_available) + versionName)
+                .setPositiveButton(R.string.update_now, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setMessage(changeLogs);
+        if(mustUpdate){
+            baseDialog.setCancelable(false);
+            AlertDialog dialog =  baseDialog.create();
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+        }
+        else {
+            baseDialog.setCancelable(true)
+                    .setNegativeButton(R.string.ignore, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    }).create().show();
+        }
     }
 }
