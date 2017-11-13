@@ -94,6 +94,9 @@ public class HomeSection extends Fragment {
         //noinspection ConstantConditions
         typeface = Typeface.createFromAsset(getActivity().getAssets(), Constants.PathConstants.PRODUCT_SANS_FONT);
 
+        notificationTitle.setTypeface(typeface);
+        notificationMessage.setTypeface(typeface);
+        notificationAuthorTime.setTypeface(typeface);
     }
 
     public void UpdateMessages() {
@@ -108,9 +111,6 @@ public class HomeSection extends Fragment {
                     + SimpleDateFormat.getDateTimeInstance().format(new Date(value.getTime()));
             notificationAuthorTime.setText(text);
 
-            notificationTitle.setTypeface(typeface);
-            notificationMessage.setTypeface(typeface);
-            notificationAuthorTime.setTypeface(typeface);
         }
     }
 
