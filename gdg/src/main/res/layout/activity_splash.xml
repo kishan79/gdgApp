@@ -19,7 +19,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.softminds.gdg.activities.splash">
+    tools:context="com.softminds.gdg.activities.Splash">
 
     <ImageView
         android:id="@+id/central_image_splash"
