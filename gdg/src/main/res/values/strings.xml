@@ -110,6 +110,8 @@
     <string name="update_now">Update</string>
     <string name="ignore">Ignore</string>
     <string name="chat_rooms">Chat Room</string>
+    <string name="delivered_message">Message delivered</string>
+    <string name="delivered_long">Your last message was delivered to all the GDG Members.</string>
 
 
 </resources>

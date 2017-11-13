@@ -57,6 +57,7 @@ public class MessagingService extends FirebaseMessagingService {
                         //noinspection ConstantConditions
                         if(Objects.equals(email, FirebaseAuth.getInstance().getCurrentUser().getEmail())){
                             Log.i("MessagingService","The sender of notification is the current user... Skip the next steps");
+                            notifyMessageSent();
                         }
                         else
                             handleMessage(remoteMessage);
@@ -71,17 +72,14 @@ public class MessagingService extends FirebaseMessagingService {
 
     private void handleMessage(RemoteMessage remoteMessage) {
 
-        //fixme : Handle the messages in foreground app. Notify all except sender
-
         Intent intent = new Intent(this, FirebaseAuth.getInstance().getCurrentUser() == null ? LoginActivity.class:MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent intent1 = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
 
-        String channel_id = getString(R.string.default_notification_channel_id);
 
         Uri defaultURI = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,channel_id)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,NotificationCompat.CATEGORY_MESSAGE)
                 .setSmallIcon(R.drawable.gdg_notification_icon)
                 .setContentTitle(remoteMessage.getNotification().getTitle())
                 .setContentText(remoteMessage.getNotification().getBody())
@@ -95,6 +93,20 @@ public class MessagingService extends FirebaseMessagingService {
         }
 
 
+    }
+
+    private void notifyMessageSent(){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,NotificationCompat.CATEGORY_STATUS)
+                .setSmallIcon(R.drawable.gdg_notification_icon)
+                .setContentTitle(getString(R.string.delivered_message))
+                .setContentText(getString(R.string.delivered_long))
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setAutoCancel(true);
+
+        NotificationManager manager =  ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
+        if (manager != null) {
+            manager.notify(24,builder.build());
+        }
     }
 
 }
