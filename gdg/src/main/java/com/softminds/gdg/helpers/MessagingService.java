@@ -46,6 +46,8 @@ public class MessagingService extends FirebaseMessagingService {
 
         Log.d(getClass().getSimpleName(),"Message Received from server while in foreground");
 
+        //fixme : Make this logic backend for better results
+
         FirebaseDatabase.getInstance().getReference()
                 .child("root")
                 .child("notifications")
@@ -96,16 +98,17 @@ public class MessagingService extends FirebaseMessagingService {
     }
 
     private void notifyMessageSent(){
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,NotificationCompat.CATEGORY_STATUS)
+        Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder builder2 = new NotificationCompat.Builder(this,NotificationCompat.CATEGORY_STATUS)
                 .setSmallIcon(R.drawable.gdg_notification_icon)
                 .setContentTitle(getString(R.string.delivered_message))
                 .setContentText(getString(R.string.delivered_long))
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setSound(uri)
                 .setAutoCancel(true);
 
-        NotificationManager manager =  ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
+        NotificationManager manager =  (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         if (manager != null) {
-            manager.notify(24,builder.build());
+            manager.notify(24,builder2.build());
         }
     }
 
