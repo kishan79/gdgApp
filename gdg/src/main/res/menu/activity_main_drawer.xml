@@ -31,8 +31,9 @@
             android:title="@string/events" />
         <item
             android:id="@+id/nav_chats"
+            android:visible="false"
             android:title="@string/chat_rooms"
-            /><!--todo : Add a new Chat Icon here -->
+            /><!--todo : Add a new Chat Icon here and make this visible -->
         <item
             android:id="@+id/nav_signOut"
             android:icon="@drawable/ic_power_settings_new_black_24dp"
