@@ -2,6 +2,9 @@
 
 # [Google Developer Group, Jalandhar](http://www.gdgjalandhar.com/)
 
+### Status on master
+[![Build Status](https://travis-ci.org/coder3101/gdgApp.svg?branch=master)](https://travis-ci.org/coder3101/gdgApp
+
 This is a Android Application by the Google Developer Group, for the Google Developer Groups. Build from scratch using Google's robust and scalable Cloud platform and Firebase tools, bundled with following cool features
 
   - Material Design
