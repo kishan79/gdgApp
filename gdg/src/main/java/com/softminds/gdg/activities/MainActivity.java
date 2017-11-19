@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 })
                 .setTitle(getString(R.string.whats_new) + " "+ BuildConfig.VERSION_NAME )
-                .setMessage(ChangelogLoader.loadAll())
+                .setMessage(ChangelogLoader.INSTANCE.loadAll())
                 .setCancelable(false)
                 .show();
 
