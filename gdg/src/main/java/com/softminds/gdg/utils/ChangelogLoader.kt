@@ -13,25 +13,22 @@
 *   If not, see <http:www.gnu.org/licenses/>.
  */
 
-package com.softminds.gdg.utils;
+package com.softminds.gdg.utils
 
 
-import android.support.annotation.NonNull;
-
-import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.Contract
 
 /*
     Todo : Hardcode all the new Changes before releasing a new Version on Stable Channel. No Changes in beta channel will be made
  */
 
 
-public class ChangelogLoader {
+object ChangelogLoader {
 
-    @NonNull
     @Contract(pure = true)
-    public static String loadAll(){
+    fun loadAll(): String {
         return "* What's new section : This will show all the new changes that will be coming with a upgrade" + "\n\n" +
                 "* Auto Update Announcer : The App will automatically announce the new updates. As soon as one is available." + "\n\n" +
-                "* Many Small UI and Bug Fixes : Some Issues with Landscape mode of Home Screen fixed. Event Detail Screen also have some major Changes.";
+                "* Many Small UI and Bug Fixes : Some Issues with Landscape mode of Home Screen fixed. Event Detail Screen also have some major Changes."
     }
 }
