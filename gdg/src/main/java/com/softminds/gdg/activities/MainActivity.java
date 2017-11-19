@@ -19,10 +19,12 @@ package com.softminds.gdg.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.test.mock.MockApplication;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -53,11 +55,11 @@ import com.softminds.gdg.fragments.HomeSection;
 import com.softminds.gdg.fragments.Notify;
 import com.softminds.gdg.utils.AdminNotifyHelper;
 import com.softminds.gdg.utils.AppUpdateChecker;
+import com.softminds.gdg.utils.ChangelogLoader;
+import com.softminds.gdg.utils.Constants;
 import com.softminds.gdg.utils.GdgEvents;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.FutureTask;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AppUpdateChecker.UpdateListener,ValueEventListener {
@@ -92,12 +94,37 @@ public class MainActivity extends AppCompatActivity
 
         usersListSet();
 
+        if(getSharedPreferences(Constants.PrefConstants.PREF_NAME,MODE_PRIVATE).getInt(Constants.PrefConstants.LAST_VERSION,-1) < BuildConfig.VERSION_CODE){
+            showNewFeatures();
+        }
+
         AppUpdateChecker.CheckUpdate(this);
 
 
         if(savedInstanceState ==null)
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_home,new HomeSection()).commit();
 
+
+
+    }
+
+    private void showNewFeatures() {
+        new AlertDialog.Builder(this)
+                .setPositiveButton(R.string.okay, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .setTitle(getString(R.string.whats_new) + " "+ BuildConfig.VERSION_NAME )
+                .setMessage(ChangelogLoader.loadAll())
+                .setCancelable(false)
+                .show();
+
+        SharedPreferences preferences = getSharedPreferences(Constants.PrefConstants.PREF_NAME,MODE_PRIVATE);
+        SharedPreferences.Editor editor =  preferences.edit();
+        editor.putInt(Constants.PrefConstants.LAST_VERSION,BuildConfig.VERSION_CODE);
+        editor.apply();
 
 
     }
@@ -252,6 +279,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void OnUpdateAvailable(int versionCode, String versionName, String changeLogs, boolean mustUpdate, final String url) {
+        if(((App) getApplication()).UpdateSuppress){
+            return;
+        }
         AlertDialog.Builder baseDialog = new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.new_available) + " " + versionName)
                 .setPositiveButton(R.string.update_now, new DialogInterface.OnClickListener() {
@@ -276,6 +306,7 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
+                            ((App)getApplication()).UpdateSuppress = true;
                         }
                     }).create().show();
         }
