@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity
 
         usersListSet();
 
-        if(getSharedPreferences(Constants.PrefConstants.PREF_NAME,MODE_PRIVATE).getInt(Constants.PrefConstants.LAST_VERSION,-1) < BuildConfig.VERSION_CODE){
+        if(getSharedPreferences(Constants.PrefConstants.PREF_NAME,MODE_PRIVATE).getInt(Constants.PrefConstants.LAST_VERSION,BuildConfig.VERSION_CODE-1) < BuildConfig.VERSION_CODE){
             showNewFeatures();
         }
 
