@@ -41,9 +41,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/speakers"
             android:layout_margin="8dp"
             android:textSize="17sp"
+            android:layout_gravity="center"
             android:textAlignment="center"
             android:maxLines="2"
             android:id="@+id/event_detail_time_venue_text"
@@ -199,8 +199,8 @@
                 android:background="@color/colorAccent"/>
 
             <android.support.v7.widget.RecyclerView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
                 android:layout_margin="5dp"
                 android:id="@+id/event_pics_recycler"/>
         </LinearLayout>
