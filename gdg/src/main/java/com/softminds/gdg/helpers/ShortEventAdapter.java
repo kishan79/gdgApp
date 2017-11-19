@@ -36,6 +36,7 @@ import com.softminds.gdg.utils.GdgEvents;
 import com.softminds.gdg.utils.RecyclerItemClickListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -76,7 +77,13 @@ public class ShortEventAdapter extends RecyclerView.Adapter<ShortEventAdapter.Ho
     }
 
     public void setData(List<GdgEvents> events){
-        this.eventsAll= events;
+        List<GdgEvents> eventsList = new ArrayList<>();
+        for(GdgEvents events1  : events){
+            if(events1.getTime() > System.currentTimeMillis()){
+                eventsList.add(events1);
+            }
+        }
+        this.eventsAll = eventsList;
         notifyDataSetChanged();
     }
 

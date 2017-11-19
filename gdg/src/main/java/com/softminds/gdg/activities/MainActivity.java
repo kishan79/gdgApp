@@ -60,6 +60,8 @@ import com.softminds.gdg.utils.Constants;
 import com.softminds.gdg.utils.GdgEvents;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AppUpdateChecker.UpdateListener,ValueEventListener {
@@ -318,6 +320,16 @@ public class MainActivity extends AppCompatActivity
             ((App)getApplication()).events = new ArrayList<>();
             for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
                 ((App) getApplication()).events.add(dataSnapshot1.getValue(GdgEvents.class));
+
+            Collections.sort(((App) getApplication()).events, new Comparator<GdgEvents>() {
+                @Override
+                public int compare(GdgEvents gdgEvents, GdgEvents t1) {
+                    if(t1.getTime() == gdgEvents.getTime())
+                        return 0;
+                    else return gdgEvents.getTime() > t1.getTime() ? -1 : 1;
+                }
+            });
+
             if(getSupportFragmentManager().findFragmentById(R.id.fragment_container_home) instanceof HomeSection){
                 ((HomeSection) getSupportFragmentManager().findFragmentById(R.id.fragment_container_home)).UpdateEvents();
             }
