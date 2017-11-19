@@ -60,10 +60,9 @@
             android:id="@+id/long_adapter_extra_details"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
             android:maxLines="5"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_long_adapter"
             app:layout_constraintTop_toBottomOf="@id/long_adapter_event_title"
             tools:text="Here we will place the dummy introduction of the Event that is being organised/Here we will place the dummy introduction of the Event that is being organised.Here we will place the dummy introduction of the Event that is being organised.Here we will place the dummy introduction of the Event that is being organised.Here we will place the dummy introduction of the Event that is being organised" />
