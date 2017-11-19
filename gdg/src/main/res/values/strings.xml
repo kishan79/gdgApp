@@ -112,6 +112,8 @@
     <string name="chat_rooms">Chat Room</string>
     <string name="delivered_message">Message delivered</string>
     <string name="delivered_long">Your last message was delivered to all the GDG Members.</string>
+    <string name="okay">Okay</string>
+    <string name="whats_new">Changelog for</string>
 
 
 </resources>

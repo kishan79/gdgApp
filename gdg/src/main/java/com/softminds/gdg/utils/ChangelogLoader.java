@@ -1,4 +1,3 @@
-
 /*
 *   Copyright (c) Ashar Khan 2017. <ashar786khan@gmail.com>
 *    This file is part of Google Developer Group's Android Application.
@@ -14,36 +13,25 @@
 *   If not, see <http:www.gnu.org/licenses/>.
  */
 
-
-package com.softminds.gdg;
-
-import android.app.Application;
-import android.widget.Toast;
-
-import com.google.firebase.database.FirebaseDatabase;
-import com.softminds.gdg.utils.AdminNotifyHelper;
-import com.softminds.gdg.utils.GdgEvents;
-
-import java.util.List;
+package com.softminds.gdg.utils;
 
 
-public class App extends Application {
+import android.support.annotation.NonNull;
 
-    public List<GdgEvents> events;
-    public AdminNotifyHelper message;
+import org.jetbrains.annotations.Contract;
 
-    public boolean UpdateSuppress = false;
+/*
+    Todo : Hardcode all the new Changes before releasing a new Version on Stable Channel. No Changes in beta channel will be made
+ */
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        FirebaseDatabase.getInstance().setPersistenceEnabled(false);
-    }
 
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        Toast.makeText(getApplicationContext(),R.string.low_memory_warn,Toast.LENGTH_SHORT).show();
-        // TODO: 29/10/17 We will do some optimization here later not today to cause less memory uses
+public class ChangelogLoader {
+
+    @NonNull
+    @Contract(pure = true)
+    public static String loadAll(){
+        return "* What's new section : This will show all the new changes that will be coming with a upgrade" + "\n\n" +
+                "* Auto Update Announcer : The App will automatically announce the new updates. As soon as one is available." + "\n\n" +
+                "* Many Small UI and Bug Fixes : Some Issues with Landscape mode of Home Screen fixed. Event Detail Screen also have some major Changes.";
     }
 }

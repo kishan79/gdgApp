@@ -29,4 +29,9 @@ public class Constants {
     public static class PathConstants{
         public static final String PRODUCT_SANS_FONT = "fonts/ProductSans-Regular.ttf";
     }
+
+    public static class PrefConstants {
+        public static final String LAST_VERSION = "last_version";
+        public static final String PREF_NAME = "data_prefs";
+    }
 }
