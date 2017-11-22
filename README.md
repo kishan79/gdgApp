@@ -2,7 +2,7 @@
 
 #### Build status 
 
-[![Status](http://ec2-34-208-97-69.us-west-2.compute.amazonaws.com:8080/job/GDG%20App/badge/icon)](http://ec2-34-208-97-69.us-west-2.compute.amazonaws.com:8080/job/GDG%20App/)
+[![Build Status](https://travis-ci.org/coder3101/gdgApp.svg?branch=master)](https://travis-ci.org/coder3101/gdgApp)
 
 
 This is a Android Application by the Google Developer Group, for the Google Developer Groups. Build from scratch using Google's robust and scalable Cloud platform and Firebase tools, bundled with following cool features
@@ -31,7 +31,6 @@ The above statements were constant source of motivation to bring this project to
 **Google Developer App** uses a number of open source libraries to work properly:
 
 * [Glide](https://github.com/bumptech/glide) - An image loading and caching library for Android focused on smooth scrolling
-* [ButterKnife](https://github.com/JakeWharton/butterknife) - Bind Android views and callbacks to fields and methods
 
 And of course **Google Developer Group App** itself is open source [project](www.github.com/coder3101/gdgApp) on Github.
 
