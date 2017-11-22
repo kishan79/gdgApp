@@ -1,6 +1,4 @@
-[![Google Developer Group](https://developers.google.com/_static/79b4008122/images/redesign-14/lockup-color.png)](https://developers.google.com/groups/)
-
-# [Google Developer Group, Jalandhar](http://www.gdgjalandhar.com/)
+[![Google Developer Group](http://www.gdgjalandhar.com/img/new%20Looo.png)](http://www.gdgjalandhar.com/)
 
 #### Build status 
 
