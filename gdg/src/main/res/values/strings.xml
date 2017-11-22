@@ -25,18 +25,18 @@
     <string name="auth_error">Failed to Log in</string>
     <string name="database_check">Checking for profile</string>
     <string name="something_went_wrong">Something went wrong.</string>
-    <string name="low_memory_warn">Low Memory : Application may not work as expected</string>
+    <string name="low_memory_warn">Low memory : Application may not work as expected</string>
     <string name="gathering_profile">Fetching the profile</string>
     <string name="done">Done</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="sure_to_leave">Are you sure?</string>
-    <string name="back_message">Do you really want to go back? \nYou have not completed your Profile,
+    <string name="back_message">Do you really want to go back? \nYou have not completed your profile,
         going back at this stage will result in loss of all the saved changes</string>
     <string name="profile_complete">Complete the profile</string>
     <string name="message_profile_create">We appreciate your choice for using official GDG Jalandhar application to get updates of new events near you.
         \n\nIt seems this is the first time you are using this application so,
-        we need you to complete your profile. It will take a few seconds.</string>
+        we need you to complete your profile. It will take just a moment.</string>
     <string name="hey">Hey</string>
     <string name="complete_my_profile">Complete My Profile</string>
     <string name="profile_complete_step1">Step 1</string>
@@ -66,10 +66,10 @@
     <string name="next">Next</string>
     <string name="back">Back</string>
     <string name="required_field">Required Field</string>
-    <string name="checkbox_missing">Oops !! You missed to click the check box.</string>
+    <string name="checkbox_missing">Oops! You missed to click the check box.</string>
     <string name="skills_required">You need at least one of the following skills to be in GDG Jalandhar</string>
 
-
+    
     <string name="home">Home</string>
     <string name="events">Events</string>
     <string name="admin_access">Admin tools</string>
@@ -78,10 +78,10 @@
     <string name="share">Share</string>
     <string name="about_us">About us</string>
     <string name="add_event">Add event</string>
-    <string name="share_text">Hey, I got this Awesome application named GDG Jalandhar App. It notifies me of all the events of GDG Jalandhar. Download it from the github releases at https://github.com/coder3101/gdgApp/releases</string>
+    <string name="share_text">Hey, I got this awesome application named GDG Jalandhar App. It notifies me of all the events of GDG Jalandhar. Download it from the github releases at https://github.com/coder3101/gdgApp/releases</string>
     <string name="send_using">Send using</string>
     <string name="google_developer_group">Google Developer Group</string>
-    <string name="designed_and_developed_by_ashar">Designed and Developed by Ashar \nLicensed under GNU General Public License 3.0</string>
+    <string name="designed_and_developed_by_ashar">Designed and developed by Ashar \lLicensed under GNU General Public License 3.0</string>
     <string name="sign_out">Sign out</string>
     <string name="version">Version :</string>
     <string name="sources">Sources</string>
