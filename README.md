@@ -3,7 +3,8 @@
 # [Google Developer Group, Jalandhar](http://www.gdgjalandhar.com/)
 
 #### Build status 
-[![Build Status](http://ec2-34-208-97-69.us-west-2.compute.amazonaws.com:8080/buildStatus/icon?job=GDG App)](http://ec2-34-208-97-69.us-west-2.compute.amazonaws.com:8080/job/GDG%20App/)
+
+[![Build Status](http://ec2-34-208-97-69.us-west-2.compute.amazonaws.com:8080/job/GDG App/badge/icon)](http://ec2-34-208-97-69.us-west-2.compute.amazonaws.com:8080/job/GDG App)
 
 
 This is a Android Application by the Google Developer Group, for the Google Developer Groups. Build from scratch using Google's robust and scalable Cloud platform and Firebase tools, bundled with following cool features
