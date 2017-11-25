@@ -81,7 +81,7 @@
     <string name="share_text">Hey, I got this awesome application named GDG Jalandhar App. It notifies me of all the events of GDG Jalandhar. Download it from the github releases at https://github.com/coder3101/gdgApp/releases</string>
     <string name="send_using">Send using</string>
     <string name="google_developer_group">Google Developer Group</string>
-    <string name="designed_and_developed_by_ashar">Designed and developed by Ashar \lLicensed under GNU General Public License 3.0</string>
+    <string name="designed_and_developed_by_ashar">Designed and developed by Ashar \nLicensed under GNU General Public License 3.0</string>
     <string name="sign_out">Sign out</string>
     <string name="version">Version :</string>
     <string name="sources">Sources</string>
