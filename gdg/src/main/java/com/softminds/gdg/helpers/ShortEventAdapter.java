@@ -73,6 +73,8 @@ public class ShortEventAdapter extends RecyclerView.Adapter<ShortEventAdapter.Ho
 
     @Override
     public int getItemCount() {
+        if (eventsAll == null)
+            return 0;
         return eventsAll.size();
     }
 
