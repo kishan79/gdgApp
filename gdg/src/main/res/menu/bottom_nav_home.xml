@@ -14,29 +14,25 @@
     If not, see <http:www.gnu.org/licenses/>.-->
 
 
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
-        android:title="@string/admin_access"
-        android:id="@+id/admin_menu">
-
-        <menu>
-            <group android:checkableBehavior="single">
-            <item
-                android:id="@+id/nav_notify"
-                android:icon="@drawable/ic_notifications_active_black_24dp"
-                android:title="@string/notify" />
-            <item
-                android:id="@+id/nav_add_event"
-                android:enabled="false"
-                android:icon="@drawable/ic_add_black_24dp"
-                android:title="@string/add_event" />
-                <!--Todo:Make this feature available-->
-            </group>
-        </menu>
-
-    </item>
-
+        android:id="@+id/bottom_nav_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/bottom_nav_event"
+        android:icon="@drawable/ic_event_black_24dp"
+        android:title="@string/events" />
+   <!-- <item
+        android:visible="false"
+        android:id="@+id/bottom_nav_chats"
+        android:title="@string/chat_rooms"
+        android:icon="@drawable/ic_chat_black_24dp" />
+    Todo Make this feature visible along with some others-->
+    <item
+        android:visible="true"
+        android:id="@+id/bottom_nav_profile"
+        android:title="@string/profile"
+        android:icon="@drawable/ic_person_black_24dp" />
 </menu>

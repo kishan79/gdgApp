@@ -23,8 +23,10 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.test.mock.MockApplication;
+import android.view.Menu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -53,6 +55,7 @@ import com.softminds.gdg.R;
 import com.softminds.gdg.fragments.EventLists;
 import com.softminds.gdg.fragments.HomeSection;
 import com.softminds.gdg.fragments.Notify;
+import com.softminds.gdg.fragments.ProfileFragment;
 import com.softminds.gdg.utils.AdminNotifyHelper;
 import com.softminds.gdg.utils.AppUpdateChecker;
 import com.softminds.gdg.utils.ChangelogLoader;
@@ -64,10 +67,12 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AppUpdateChecker.UpdateListener,ValueEventListener {
+        implements  AppUpdateChecker.UpdateListener,ValueEventListener, NavigationView.OnNavigationItemSelectedListener {
 
     ProgressBar mProgressbar;
     FrameLayout mFragmentContainer;
+    BottomNavigationView bottomView;
+    BottomNavigationView.OnNavigationItemSelectedListener itemSelectedListener;
 
 
     @Override
@@ -79,6 +84,9 @@ public class MainActivity extends AppCompatActivity
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        bottomView = findViewById(R.id.bottom_navigation);
+        //by default we disable the admin feature that lies in navigation drawer
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -91,6 +99,11 @@ public class MainActivity extends AppCompatActivity
         mFragmentContainer = findViewById(R.id.fragment_container_home);
 
         setNavigationHeader();
+
+        setItemBottomViewListener();
+
+        setBottomView();
+
 
         setAdminAccess();
 
@@ -107,6 +120,40 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_home,new HomeSection()).commit();
 
 
+
+    }
+
+    private void setBottomView() {
+        bottomView.inflateMenu(R.menu.bottom_nav_home);
+        bottomView.setOnNavigationItemSelectedListener(itemSelectedListener);
+        bottomView.setSelectedItemId(R.id.bottom_nav_home);
+    }
+
+    private void setItemBottomViewListener() {
+    itemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            int id = item.getItemId();
+            if (id == R.id.bottom_nav_home) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_home,new HomeSection()).commit();
+                if(getSupportActionBar() !=null)
+                    getSupportActionBar().setTitle(R.string.google_dev);
+
+            } else if (id == R.id.bottom_nav_event) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_home,new EventLists()).commit();
+                if(getSupportActionBar() !=null)
+                    getSupportActionBar().setTitle(R.string.events);
+
+            }else if (id == R.id.bottom_nav_profile) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_home,new ProfileFragment()).commit();
+                if(getSupportActionBar() !=null)
+                    getSupportActionBar().setTitle(R.string.profile);
+
+            }
+            return true;
+        }
+
+    };
 
     }
 
@@ -130,6 +177,33 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_share) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text));
+            startActivity(Intent.createChooser(intent, getString(R.string.send_using)));
+        } else if (id == R.id.menu_signOut) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this,LoginActivity.class));
+            finish();
+        }else if (id == R.id.menu_about_us) {
+            startActivity(new Intent(this,AboutUs.class));
+        }
+
+        return true;
+    }
+
+
 
     @Override
     protected void onStart() {
@@ -179,8 +253,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onResult(boolean granted) {
                 if(granted){
-                    NavigationView navigationView = findViewById(R.id.nav_view);
-                    navigationView.getMenu().findItem(R.id.admin_menu).setVisible(true);
+                    DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                    //by default we disable the admin feature that lies in navigation drawer
+                    drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                    Toast.makeText(MainActivity.this, R.string.admin_enabled_toast, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -196,7 +272,6 @@ public class MainActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user!=null) {
-            ((TextView) header.findViewById(R.id.nav_email)).setText(user.getEmail());
             ((TextView) header.findViewById(R.id.nav_name)).setText(user.getDisplayName());
            ImageView image =  header.findViewById(R.id.nav_profile_image);
 
@@ -224,17 +299,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_home,new HomeSection()).commit();
-            if(getSupportActionBar() !=null)
-                getSupportActionBar().setTitle(R.string.google_dev);
-
-        } else if (id == R.id.nav_event) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_home,new EventLists()).commit();
-            if(getSupportActionBar() !=null)
-                getSupportActionBar().setTitle(R.string.events);
-
-        } else if (id == R.id.nav_notify) {
+        if (id == R.id.nav_notify) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_home,new Notify()).commit();
             if(getSupportActionBar() !=null)
                 getSupportActionBar().setTitle(R.string.notify);
@@ -244,20 +309,7 @@ public class MainActivity extends AppCompatActivity
             if(getSupportActionBar() !=null)
                 getSupportActionBar().setTitle(R.string.add_event);
 
-        } else if (id == R.id.nav_share) {
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.share_text));
-            startActivity(Intent.createChooser(intent,getString(R.string.send_using)));
-
-        } else if (id == R.id.nav_about_us) {
-            startActivity(new Intent(this,AboutUs.class));
         }
-     else if (id == R.id.nav_signOut) {
-       FirebaseAuth.getInstance().signOut();
-       startActivity(new Intent(this,LoginActivity.class));
-       finish();
-    }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
