@@ -22,7 +22,6 @@
     tools:context="com.softminds.gdg.activities.Splash">
 
     <ImageView
-        android:id="@+id/central_image_splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

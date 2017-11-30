@@ -30,7 +30,6 @@
             android:icon="@drawable/ic_event_black_24dp"
             android:title="@string/events" />
         <item
-            android:id="@+id/nav_chats"
             android:visible="false"
             android:title="@string/chat_rooms"
             /><!--todo : Add a new Chat Icon here and make this visible -->
@@ -44,7 +43,7 @@
     <item
         android:title="@string/admin_access"
         android:id="@+id/admin_menu"
-        android:visible="false">
+        android:visible="true">
 
         <menu>
             <group android:checkableBehavior="single">

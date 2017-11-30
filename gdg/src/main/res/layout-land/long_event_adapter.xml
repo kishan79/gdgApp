@@ -26,7 +26,6 @@
     app:cardUseCompatPadding="true"
     android:foreground="?selectableItemBackground"
     app:cardBackgroundColor="@color/cardsColor"
-    android:id="@+id/card_long_adapter"
     android:layout_height="160dp">
 
     <android.support.constraint.ConstraintLayout
