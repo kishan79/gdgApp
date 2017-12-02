@@ -73,10 +73,7 @@
     <string name="okay">Okay</string>
     <string name="whats_new">Changelog for</string>
     <string name="profile">Profile</string>
-    <string name="admin_enabled_toast">Admin Access allowed : Use Naviagtion to access</string>
+    <string name="admin_enabled_toast">Admin Access allowed : Use Navigation to access</string>
     <string name="admin_power_mess">Your Admin Powers are here</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
