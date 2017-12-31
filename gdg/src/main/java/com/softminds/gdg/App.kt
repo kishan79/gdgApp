@@ -1,4 +1,3 @@
-
 /*
 *   Copyright (c) Ashar Khan 2017. <ashar786khan@gmail.com>
 *    This file is part of Google Developer Group's Android Application.
@@ -15,16 +14,31 @@
  */
 
 
-package com.softminds.gdg.utils;
+package com.softminds.gdg
 
-public class Constants {
+import android.app.Application
+import android.widget.Toast
 
-    public static class PathConstants{
-        public static final String PRODUCT_SANS_FONT = "fonts/ProductSans-Regular.ttf";
+import com.google.firebase.database.FirebaseDatabase
+import com.softminds.gdg.utils.AdminNotifyHelper
+import com.softminds.gdg.utils.GdgEvents
+
+
+class App : Application() {
+
+    var events: List<GdgEvents>? = null
+    var message: AdminNotifyHelper? = null
+
+    var updateSuppress = false
+
+    override fun onCreate() {
+        super.onCreate()
+        FirebaseDatabase.getInstance().setPersistenceEnabled(false)
     }
 
-    public static class PrefConstants {
-        public static final String LAST_VERSION = "last_version";
-        public static final String PREF_NAME = "data_prefs";
+    override fun onLowMemory() {
+        super.onLowMemory()
+        Toast.makeText(applicationContext, R.string.low_memory_warn, Toast.LENGTH_SHORT).show()
+        // TODO: 29/10/17 We will do some optimization here later not today to cause less memory uses
     }
 }

@@ -49,7 +49,7 @@ public class LongEventAdapter extends RecyclerView.Adapter<LongEventAdapter.Even
     @Override
     public EventHolder  onCreateViewHolder(ViewGroup parent, int viewType) {
         ctx = parent.getContext();
-        typeface = Typeface.createFromAsset(parent.getContext().getAssets(), Constants.PathConstants.PRODUCT_SANS_FONT);
+        typeface = Typeface.createFromAsset(parent.getContext().getAssets(), Constants.PathConstants.INSTANCE.getProductSansFontPath());
         return new EventHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.long_event_adapter,parent,false));
     }
 

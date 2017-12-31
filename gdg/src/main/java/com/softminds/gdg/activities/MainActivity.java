@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity
 
         usersListSet();
 
-        if(getSharedPreferences(Constants.PrefConstants.PREF_NAME,MODE_PRIVATE).getInt(Constants.PrefConstants.LAST_VERSION,BuildConfig.VERSION_CODE-1) < BuildConfig.VERSION_CODE){
+        if(getSharedPreferences(Constants.PrefConstants.INSTANCE.getPreferencesNames(),MODE_PRIVATE).getInt(Constants.PrefConstants.INSTANCE.getLastVersion(),BuildConfig.VERSION_CODE-1) < BuildConfig.VERSION_CODE){
             showNewFeatures();
         }
 
@@ -169,9 +169,9 @@ public class MainActivity extends AppCompatActivity
                 .setCancelable(false)
                 .show();
 
-        SharedPreferences preferences = getSharedPreferences(Constants.PrefConstants.PREF_NAME,MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(Constants.PrefConstants.INSTANCE.getPreferencesNames(),MODE_PRIVATE);
         SharedPreferences.Editor editor =  preferences.edit();
-        editor.putInt(Constants.PrefConstants.LAST_VERSION,BuildConfig.VERSION_CODE);
+        editor.putInt(Constants.PrefConstants.INSTANCE.getLastVersion(),BuildConfig.VERSION_CODE);
         editor.apply();
 
 
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             if(dataSnapshot.exists()){
-                ((App)getApplication()).message = dataSnapshot.getValue(AdminNotifyHelper.class);
+                ((App) getApplication()).setMessage(dataSnapshot.getValue(AdminNotifyHelper.class));
                 if(mProgressbar.getVisibility() == View.VISIBLE){
                    mFragmentContainer.setVisibility(View.VISIBLE);
                    mProgressbar.setVisibility(View.GONE);
@@ -332,7 +332,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onUpdateFound(int versionCode, String versionName, String changeLogs, boolean mustUpdate, final String url) {
-        if(((App) getApplication()).UpdateSuppress){
+        if(((App) getApplication()).getUpdateSuppress()){
             return;
         }
         AlertDialog.Builder baseDialog = new AlertDialog.Builder(this)
@@ -359,7 +359,7 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
-                            ((App)getApplication()).UpdateSuppress = true;
+                            ((App) getApplication()).setUpdateSuppress(true);
                         }
                     }).create().show();
         }
@@ -368,11 +368,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         if(dataSnapshot.exists()){
-            ((App)getApplication()).events = new ArrayList<>();
+            ((App) getApplication()).setEvents(new ArrayList<GdgEvents>());
             for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
-                ((App) getApplication()).events.add(dataSnapshot1.getValue(GdgEvents.class));
+                //noinspection ConstantConditions
+                ((App) getApplication()).getEvents().add(dataSnapshot1.getValue(GdgEvents.class));
 
-            Collections.sort(((App) getApplication()).events, new Comparator<GdgEvents>() {
+            //noinspection ConstantConditions
+            Collections.sort(((App) getApplication()).getEvents(), new Comparator<GdgEvents>() {
                 @Override
                 public int compare(GdgEvents gdgEvents, GdgEvents t1) {
                     if(t1.getTime() == gdgEvents.getTime())

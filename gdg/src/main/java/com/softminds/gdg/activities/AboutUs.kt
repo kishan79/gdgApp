@@ -33,7 +33,7 @@ class AboutUs : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_us)
 
-        val product = Typeface.createFromAsset(assets, Constants.PathConstants.PRODUCT_SANS_FONT)
+        val product = Typeface.createFromAsset(assets, Constants.PathConstants.productSansFontPath)
 
         gdg_title.typeface = product
         textView3.typeface = product

@@ -27,13 +27,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.softminds.gdg.App;
 import com.softminds.gdg.R;
 import com.softminds.gdg.helpers.ShortEventAdapter;
@@ -42,7 +37,6 @@ import com.softminds.gdg.utils.Constants;
 import com.softminds.gdg.utils.GdgEvents;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -92,7 +86,7 @@ public class HomeSection extends Fragment {
         UpdateMessages();
         UpdateEvents();
         //noinspection ConstantConditions
-        typeface = Typeface.createFromAsset(getActivity().getAssets(), Constants.PathConstants.PRODUCT_SANS_FONT);
+        typeface = Typeface.createFromAsset(getActivity().getAssets(), Constants.PathConstants.INSTANCE.getProductSansFontPath());
 
         notificationTitle.setTypeface(typeface);
         notificationMessage.setTypeface(typeface);
@@ -101,7 +95,7 @@ public class HomeSection extends Fragment {
 
     public void UpdateMessages() {
         //noinspection ConstantConditions
-        AdminNotifyHelper value = ((App)getActivity().getApplication()).message;
+        AdminNotifyHelper value = ((App) getActivity().getApplication()).getMessage();
         //getActivity Cannot be null because this method is only called if this fragment is attached to the activity
         if(value !=null) {
             notificationMessage.setText(value.getBody());
@@ -116,7 +110,7 @@ public class HomeSection extends Fragment {
 
     public void UpdateEvents() {
         //noinspection ConstantConditions
-        List<GdgEvents> events = ((App)getActivity().getApplication()).events;
+        List<GdgEvents> events = ((App) getActivity().getApplication()).getEvents();
         if(events !=null) {
             adapter.setData(events);
             adapter.notifyDataSetChanged();

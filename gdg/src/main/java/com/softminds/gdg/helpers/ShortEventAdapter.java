@@ -20,9 +20,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -33,7 +31,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.softminds.gdg.R;
 import com.softminds.gdg.utils.Constants;
 import com.softminds.gdg.utils.GdgEvents;
-import com.softminds.gdg.utils.RecyclerItemClickListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,7 +50,7 @@ public class ShortEventAdapter extends RecyclerView.Adapter<ShortEventAdapter.Ho
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         this.parent = parent.getContext();
-        typeface = Typeface.createFromAsset(parent.getContext().getAssets(), Constants.PathConstants.PRODUCT_SANS_FONT);
+        typeface = Typeface.createFromAsset(parent.getContext().getAssets(), Constants.PathConstants.INSTANCE.getProductSansFontPath());
        return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.short_adapter,parent,false));
     }
 

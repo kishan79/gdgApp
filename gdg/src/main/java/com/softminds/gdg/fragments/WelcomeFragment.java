@@ -102,7 +102,7 @@ public class WelcomeFragment extends Fragment implements GoogleApiClient.OnConne
 
     private void setViewTypeFace() {
         //noinspection ConstantConditions
-        Typeface productSans = Typeface.createFromAsset(getActivity().getAssets(), Constants.PathConstants.PRODUCT_SANS_FONT);
+        Typeface productSans = Typeface.createFromAsset(getActivity().getAssets(), Constants.PathConstants.INSTANCE.getProductSansFontPath());
         ((Button) root.findViewById(R.id.welcome_sign_in_button)).setTypeface(productSans);
         ((TextView) root.findViewById(R.id.welcome_text_message)).setTypeface(productSans);
         ((TextView) root.findViewById(R.id.welcome_login_text)).setTypeface(productSans);

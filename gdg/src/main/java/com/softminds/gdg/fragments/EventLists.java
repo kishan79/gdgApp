@@ -77,8 +77,8 @@ public class EventLists extends Fragment implements RecyclerItemClickListener {
         mRecycler.setHasFixedSize(true);
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         mRecycler.addOnItemTouchListener(new RecyclerItemClick(getContext(),this));
-        if(((App)getActivity().getApplication()).events !=null)
-            mRecycler.setAdapter(new LongEventAdapter(((App)getActivity().getApplication()).events));
+        if(((App) getActivity().getApplication()).getEvents() !=null)
+            mRecycler.setAdapter(new LongEventAdapter(((App) getActivity().getApplication()).getEvents()));
         else{
             ProgressLoad(true);
             final List<GdgEvents> events = new ArrayList<>();

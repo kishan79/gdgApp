@@ -59,7 +59,7 @@ public class EventDetails extends AppCompatActivity {
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        product_sans = Typeface.createFromAsset(getAssets(), Constants.PathConstants.PRODUCT_SANS_FONT);
+        product_sans = Typeface.createFromAsset(getAssets(), Constants.PathConstants.INSTANCE.getProductSansFontPath());
 
         //Grab all references
         speakers = findViewById(R.id.event_detail_speakers_list_text);
@@ -72,7 +72,7 @@ public class EventDetails extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        events = ((App)getApplication()).events;
+        events = ((App) getApplication()).getEvents();
         if(events == null || getIntent().getIntExtra("POSITION",-1) == -1){
             Log.wtf(getClass().getSimpleName(),"Impossible to click a view unless data is not loaded Or");
             Log.wtf(getClass().getSimpleName(),"Parent Activity/ Fragment did not provided the POSITION");
