@@ -25,11 +25,12 @@ class GdgEvents {
     var author: String? = null
     var agenda: String? = null
     var speakers: List<String>? = null
-    var extra_details: String? = null //any extra payload for event
+    var extraDetails: String? = null //any extra payload for event
     var picsUrl: List<String>? = null //contains list of urls of current event
     var headIconUrl: String? = null //contains central event url
     var type: Int = 0
 
+    @Suppress("unused")
     companion object {
         val CONFERENCE = 1
         val MEET_UP = 2
@@ -41,4 +42,4 @@ class GdgEvents {
         val FEST = 8
     }
 
-}//required a empty constructor
+}
