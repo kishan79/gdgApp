@@ -5,22 +5,22 @@
 [![Build Status](https://travis-ci.org/coder3101/gdgApp.svg?branch=master)](https://travis-ci.org/coder3101/gdgApp)
 
 
-This is a Android Application by the Google Developer Group, for the Google Developer Groups. Build from scratch using Google's robust and scalable Cloud platform and Firebase tools, bundled with following cool features
+This is a Android Application by the Google Developer Group Jalandhar, for the Google Developer Groups. Built from scratch using Google's robust and scalable Cloud platform and Firebase tools, bundled with following cool features
 
   - Material Design
-  - Membership Management
+  - Membership Management (coming soon)
   - Backend support by Firebase 
 
 ### Features
 
-  - Member, Admin, Public Access Level
+  - Member, Admin, Public Access Level (coming soon)
   - Cloud Messaging for Notifications about new events
-  - Chat Rooms build with Real time Database
-  - Direct Messages to individuals (DMs).
-  - A Mark for GDG Membership with Profile showing Position in GDG.
+  - Chat Rooms build with Real time Database (coming soon)
+  - Direct Messages to individuals (DMs). (coming soon)
+  - A Mark for GDG Membership with Profile showing Position in GDG. (coming soon)
   - **More to be added soon**
 
-Being a member of  **Google Developer Group** and still using third party services for Communications and Announcements regarding Meetups and other events in GDG. Here is something build from scratch with the help of Google Products for Google Developers. Feel free to Fork and make it better.
+Being a member of  **Google Developer Group Jalandhar** and still using third party services for Communications and Announcements regarding Meetups and other events in GDG Jalandhar. Here is something build from scratch with the help of Google Products for Google Developers. Feel free to Fork and make it better.
 
 > Learning a skill is of no use unless you do something with it that will have a positive impact on our lives.
 
@@ -58,7 +58,7 @@ Make sure following things before creating a new Pull request :
  | ```DatabaseReference ref;``` | ```DatabaseReference x;``` |
 
 ### Todos
- - Complete the App.
+ - Make all the coming soon features.
 
 License
 ----
