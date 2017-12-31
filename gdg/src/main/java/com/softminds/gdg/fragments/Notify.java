@@ -89,7 +89,7 @@ public class Notify extends Fragment {
                            live_time
                    );
 
-                   AdminNotifyHelper.NotifyAll(adminNotifyHelper).addOnSuccessListener(
+                   AdminNotifyHelper.Companion.notifyAll(adminNotifyHelper).addOnSuccessListener(
                            new OnSuccessListener<Void>() {
                                @Override
                                public void onSuccess(Void aVoid) {

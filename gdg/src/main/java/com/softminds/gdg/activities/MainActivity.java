@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity
 
     private void setAdminAccess() {
         //noinspection ConstantConditions
-        AdminNotifyHelper.CheckUser(new AdminNotifyHelper.AdminAccess() {
+        AdminNotifyHelper.Companion.checkUser(new AdminNotifyHelper.AdminAccess() {
             @Override
             public void onResult(boolean granted) {
                 if(granted){
@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             @Override
-            public void InvalidAuth() {
+            public void invalidAuth() {
                 Toast.makeText(getApplicationContext(),R.string.denied,Toast.LENGTH_SHORT).show();
             }
         });
