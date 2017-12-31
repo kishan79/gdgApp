@@ -30,8 +30,6 @@ import com.softminds.gdg.R;
 import com.softminds.gdg.utils.Constants;
 import com.softminds.gdg.utils.GdgEvents;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 
@@ -59,7 +57,7 @@ public class LongEventAdapter extends RecyclerView.Adapter<LongEventAdapter.Even
     public void onBindViewHolder(EventHolder holder, int position) {
         GdgEvents event = this.events.get(position);
         holder.title.setText(event.getName());
-        holder.extra.setText(event.getExtra_details());
+        holder.extra.setText(event.getExtraDetails());
 
         holder.extra.setTypeface(typeface);
         holder.title.setTypeface(typeface);

@@ -25,7 +25,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
-import android.test.mock.MockApplication;
 import android.view.Menu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -113,7 +112,7 @@ public class MainActivity extends AppCompatActivity
             showNewFeatures();
         }
 
-        AppUpdateChecker.CheckUpdate(this);
+        AppUpdateChecker.INSTANCE.checkUpdate(this);
 
 
         if(savedInstanceState ==null)
@@ -332,7 +331,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void OnUpdateAvailable(int versionCode, String versionName, String changeLogs, boolean mustUpdate, final String url) {
+    public void onUpdateFound(int versionCode, String versionName, String changeLogs, boolean mustUpdate, final String url) {
         if(((App) getApplication()).UpdateSuppress){
             return;
         }

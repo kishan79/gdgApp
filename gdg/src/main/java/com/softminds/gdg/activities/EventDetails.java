@@ -109,7 +109,7 @@ public class EventDetails extends AppCompatActivity {
 
         agenda.setText(source.getAgenda()==null ? format(null) : source.getAgenda());
         time_venue.setText(format(source.getVenue(), SimpleDateFormat.getDateInstance().format(new Date(source.getTime()))));
-        about_event.setText(source.getExtra_details());
+        about_event.setText(source.getExtraDetails());
         speakers.setText(format(source.getSpeakers()));
 
     }
