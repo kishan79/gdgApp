@@ -19,7 +19,9 @@ package com.softminds.gdg.utils
 import org.jetbrains.annotations.Contract
 
 /*
-    Todo : Hardcode all the new Changes before releasing a new Version on Stable Channel. No Changes in beta channel will be made
+    Todo : Hardcode all the new Changes before releasing a new Version on Stable Channel.
+
+    FixMe(coder3101) : Make these changes to be updated from Cloud instead of HardCode.
  */
 
 
