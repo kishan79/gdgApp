@@ -111,7 +111,7 @@ public class EventLists extends Fragment implements RecyclerItemClickListener {
     }
 
     @Override
-    public void OnItemClick(int position, View data) {
+    public void onItemClick(int position, View data) {
         Intent i = new Intent(getContext(), EventDetails.class);
         i.putExtra("POSITION",position);
         startActivity(i);

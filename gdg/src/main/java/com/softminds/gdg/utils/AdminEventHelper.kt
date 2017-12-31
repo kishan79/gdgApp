@@ -13,11 +13,20 @@
 *   If not, see <http:www.gnu.org/licenses/>.
  */
 
-package com.softminds.gdg.utils;
+package com.softminds.gdg.utils
 
 
-import android.view.View;
+import com.google.android.gms.tasks.Task
+import com.google.firebase.database.FirebaseDatabase
 
-public interface RecyclerItemClickListener {
-    void OnItemClick(int position, View data);
+@Suppress("unused")
+object AdminEventHelper {
+
+    fun addEvent(e: GdgEvents): Task<Void> {
+        return FirebaseDatabase.getInstance().reference
+                .child("root")
+                .child("events")
+                .child(System.currentTimeMillis().toString())
+                .setValue(e)
+    }
 }

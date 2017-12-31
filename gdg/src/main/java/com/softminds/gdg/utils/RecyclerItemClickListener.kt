@@ -1,4 +1,3 @@
-
 /*
 *   Copyright (c) Ashar Khan 2017. <ashar786khan@gmail.com>
 *    This file is part of Google Developer Group's Android Application.
@@ -14,19 +13,11 @@
 *   If not, see <http:www.gnu.org/licenses/>.
  */
 
-package com.softminds.gdg.utils;
+package com.softminds.gdg.utils
 
 
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.FirebaseDatabase;
+import android.view.View
 
-public class AdminEventHelper {
-
-    public static Task<Void> AddEvent(GdgEvents e){
-        return FirebaseDatabase.getInstance().getReference()
-                .child("root")
-                .child("events")
-                .child(String.valueOf(System.currentTimeMillis()))
-                .setValue(e);
-    }
+interface RecyclerItemClickListener {
+    fun onItemClick(position: Int, data: View)
 }
