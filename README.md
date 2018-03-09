@@ -2,7 +2,7 @@
 
 #### Build status 
 
-[![Build Status](http://coder3101.ml:8080/job/Google%20Developer%20Group%20App/badge/icon)](http://coder3101.ml:8080/job/Google%20Developer%20Group%20App/)
+[![Build Status](http://coder3101.ml:8080/buildStatus/icon?job=Google Developer Group App)](http://coder3101.ml:8080/job/Google%20Developer%20Group%20App/)
 
 
 This is a Android Application by the Google Developer Group Jalandhar, for the Google Developer Groups. Built from scratch using Google's robust and scalable Cloud platform and Firebase tools, bundled with following cool features
