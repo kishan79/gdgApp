@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright (c) Ashar Khan 2017. <ashar786khan@gmail.com>
+    This file is part of Google Developer Group's Android Application.
+    Google Developer Group 's Android Application is free software : you can redistribute it and/or modify
+    it under the terms of GNU General Public License as published by the Free Software Foundation,
+    either version 3 of the License, or (at your option) any later version.
+
+    This Application is distributed in the hope that it will be useful
+    but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+    or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General  Public License for more details.
+
+    You should have received a copy of the GNU General Public License along with this Source File.
+    If not, see <http:www.gnu.org/licenses/>.-->
+
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_nav_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/bottom_nav_event"
+        android:icon="@drawable/ic_event_black_24dp"
+        android:title="@string/events" />
+   <!-- <item
+        android:visible="false"
+        android:id="@+id/bottom_nav_chats"
+        android:title="@string/chat_rooms"
+        android:icon="@drawable/ic_chat_black_24dp" />
+    Todo Make this feature visible along with some others-->
+    <item
+        android:visible="true"
+        android:id="@+id/bottom_nav_profile"
+        android:title="@string/profile"
+        android:icon="@drawable/ic_person_black_24dp" />
+</menu>

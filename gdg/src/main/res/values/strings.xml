@@ -4,6 +4,76 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
     <string name="app_name_long">Google Developer Group\nJalandhar</string>
+    <string name="app_name_semi">Google Developers</string>
+
+    <!--Welcome Screen Activity-->
+    <string name="welcome">Welcome</string>
+    <string name="using_google_account">Continue with Google</string>
+    <string name="welcome_message">Google Developer Groups (GDGs) are for developers who are
+    interested in Google\'s Developers Technology\; Everything from Android, Chrome, Drive, and Google
+        Cloud Platforms to Product API, Maps API, and Youtube API.\n\n\n
+        A GDG can take many forms —from just a few people getting together to watch Google\'s Latest
+        Videos,to large gatherings with demos and tech talks, to events like code sprints and hackathons.
+        However at the core GDGs are focused on developers and technical contents, and the core audience should be developers.
+    </string>
+    <string name="logging_in">It may take a while</string>
+    <string name="google_play_service_error">Error : Cannot connect to Google Play Services</string>
+    <string name="connecting_with_google">Connecting with Google</string>
+    <string name="authenticating_you">Authenticating</string>
+    <string name="auth_error">Failed to Log in</string>
+    <string name="something_went_wrong">Something went wrong.</string>
+    <string name="low_memory_warn">Low memory : Application may not work as expected</string>
+    <string name="done">Done</string>
+
+
+    <string name="login_interrupt">Interrupted by the user</string>
+
+    <string name="home">Home</string>
+    <string name="events">Events</string>
+    <string name="admin_access">Admin tools</string>
+    <string name="notify">Notify</string>
+    <string name="communicate">Communicate</string>
+    <string name="share">Share</string>
+    <string name="about_us">About us</string>
+    <string name="add_event">Add event</string>
+    <string name="share_text">Hey, I got this awesome application named GDG Jalandhar App. It notifies me of all the events of GDG Jalandhar. Download it from the github releases at https://github.com/coder3101/gdgApp/releases</string>
+    <string name="send_using">Send using</string>
+    <string name="google_developer_group">Google Developer Group</string>
+    <string name="designed_and_developed_by_ashar">Designed and developed by Ashar \nLicensed under GNU General Public License 3.0</string>
+    <string name="sign_out">Sign out</string>
+    <string name="version">Version :</string>
+    <string name="sources">Sources</string>
+    <string name="denied">Please Re-login : Authentication denied</string>
+
+    <string name="google_dev">Google Developer</string>
+
+    <string name="upcoming_events">Upcoming events</string>
+    <string name="last_message">Last Notification</string>
+    <string name="notification_body">Notification body</string>
+    <string name="notification_title">Notification title</string>
+    <string name="send_with_a_notification_sound">Send with a notification sound</string>
+    <string name="send">Send</string>
+    <string name="missing">Field missing</string>
+    <string name="notified_soon">Message will be delivered soon</string>
+    <string name="author">Author</string>
+    <string name="time">Time</string>
+    <string name="speakers">Speakers</string>
+    <string name="coming_soon">Coming soon</string>
+    <string name="about_event">About event</string>
+    <string name="agenda">Agenda</string>
+    <string name="pics">Pictures</string>
+    <string name="on">On</string>
+    <string name="new_available">Update available : </string>
+    <string name="update_now">Update</string>
+    <string name="ignore">Ignore</string>
+    <string name="chat_rooms">Chats</string>
+    <string name="delivered_message">Message delivered</string>
+    <string name="delivered_long">Your last message was delivered to all the GDG Jalandhar Members.</string>
+    <string name="okay">Okay</string>
+    <string name="whats_new">Changelog for</string>
+    <string name="profile">Profile</string>
+    <string name="admin_enabled_toast">Admin Access allowed : Use Navigation to access</string>
+    <string name="admin_power_mess">Your Admin Powers are here</string>
+
 </resources>
